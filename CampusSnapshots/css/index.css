@@ -1,0 +1,7 @@
+.heading {
+    height: 75vh; /* 75% height */
+    min-height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../img/header-image.jpg');
+}
