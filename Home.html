@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<p id = "name">Name: </p>
+<p id = "type">Type: </p>
+<p id = "act">Start: </p>
+<script>
+xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    myObj = JSON.parse(this.responseText);
+    
+    document.getElementById("name").innerHTML
+    document.getElementById("type").innerHTML += myOBj[0].Type;
+    document.getElementById("act").innerHTML = myObj[0].Activity;
+  }
+};
+xmlhttp.open("POST", "json_demo_db_post.php", true);
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xmlhttp.send("x=" + dbParam);
+</script>
+</body>
+</html>
