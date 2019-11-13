@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
+
+    <title>Events - Campus Snapshots</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">Campus Snapshots</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="reports.html">Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="post.html">Post</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="admin.html">Admin</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.html">Logout</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link">USERNAME</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <div class="container">
+
+        <div class="m-2 text-center">
+            <h3 class="py-3">Administrative Queue</h3>
+        </div>
+
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Check</th>
+                    <th scope="col">Issues</th>
+                    <th scope="col">Author of Post</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Date Reported On</th>
+                    <th scope="col">Trash</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <input type="hidden" class="reportID" value="REPORT_VALUE1">
+                    <td><input type="checkbox"></td>
+                    <td>Reported Post 1</td>
+                    <td>John Doe</td>
+                    <td>-</td>
+                    <td>11/12/2019</td>
+                    <td><button type="button" class="btn btn-danger deleteReport">Delete</button></td>
+                </tr>
+                <tr>
+                    <input type="hidden" class="reportID" value="REPORT_VALUE2">
+                    <td><input type="checkbox"></td>
+                    <td>Reported Post 2</td>
+                    <td>Jane Doe</td>
+                    <td>-</td>
+                    <td>11/12/2019</td>
+                    <td><button type="button" class="btn btn-danger deleteReport">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-5">
+                <input id="nameFilter" type="text" class="form-control" placeholder="Name">
+            </div>
+            <!-- /.col-md-5 -->
+
+
+            <div class="col-md-3">
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="categoriesDropdown"
+                        data-toggle="dropdown">
+                        Categories
+                    </button>
+                    <div class="dropdown-menu w-100">
+                        <div class="form-check dropdown-item">
+                            <input class="form-check-input" type="checkbox" id="cat1" value="cat1" checked>
+                            <label class="form-check-label" for="cat1">cat1</label>
+                        </div>
+                        <div class="form-check dropdown-item">
+                            <input class="form-check-input" type="checkbox" id="cat2" value="cat2" checked>
+                            <label class="form-check-label" for="cat2">cat2</label>
+                        </div>
+                        <div class="form-check dropdown-item">
+                            <input class="form-check-input" type="checkbox" id="cat3" value="cat3" checked>
+                            <label class="form-check-label" for="cat3">cat3</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.dropdown -->
+
+
+            </div>
+            <!-- /.col-md-3 -->
+
+
+            <div class="col-md-2">
+                <input id="dateFilterStart" type="text" class="form-control" placeholder="From">
+            </div>
+            <!-- /.col-md-2 -->
+
+            <div class="col-md-2">
+                <input id="dateFilterEnd" type="text" class="form-control" placeholder="To">
+            </div>
+            <!-- /.col-md-2 -->
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- JS Dependencies -->
+    <script src="js/lib/jquery/jquery-3.4.1.min.js"></script>
+    <script src="js/lib/popper/popper.min.js"></script>
+    <script src="js/lib/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- Page Functionality JS-->
+    <script src="js/admin.js"></script>
+
+
+</body>
+
+</html>
