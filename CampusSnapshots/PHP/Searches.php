@@ -1,18 +1,21 @@
 <?php
 class Searches
 {
+    private static $conn;
     private function sanitize(&$data){
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
     }
-    function __construct(){}
+    function __construct($conn){
+        $this->conn = $conn;
+        //add security here
+    }
     
     function getProfile($profile){
-        $conn = connect();
         
-        $login = $conn->prepare("SELECT Type, Acitve, Profile_XML
- FROM Person where UserName = ?");
+        $login = $this->conn->prepare("SELECT Type, Acitve, UserName
+ FROM Person WHERE UserName = ?");
         $login->bindParam(1, $profile);
         
         $login->execute();
@@ -21,6 +24,45 @@ class Searches
         
         return $result;
     }
-    
+    function getPosts($IDType, $ID){
+        
+        $login = $this->conn->prepare("SELECT Made, 
+        PostText, RID, EID FROM Posts WHERE ? = ?");
+        $login->bindParam(1, $IDType);
+        $login->bindParam(2, $ID);
+        
+        
+        $login->execute();
+        $login->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $login->fetchAll();
+        
+        return $result;
+    }
+    function getEvents($IDType = "EID", $ID = "EID"){
+        $login = $this->conn->prepare("SELECT Person.UserName,
+        Name, StartTime, EndTime, Description FROM Events INNER JOIN UID ON Reports.UID = Person.UID WHERE ? = ?");
+        $login->bindParam(1, $IDType);
+        $login->bindParam(2, $ID);
+        
+        
+        $login->execute();
+        $login->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $login->fetchAll();
+        
+        return $result;
+    }
+    function getProblems($IDType = "RID", $ID = "RID"){
+        
+        $login = $this->conn->prepare("SELECT Person.UserName, Type, Name
+        Reported, Status, Description FROM Reports INNER JOIN UID ON Reports.UID = Person.UID WHERE ? = ? ");
+        $login->bindParam(1, $IDType);
+        $login->bindParam(2, $ID);
+        
+        $login->execute();
+        $login->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $login->fetchAll();
+        
+        return $result;
+    }
 }
 ?>

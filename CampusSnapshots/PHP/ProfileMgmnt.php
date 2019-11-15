@@ -1,12 +1,12 @@
 <?php
 require 'connection.php';
-require 'Searches';
+require 'Searches.php';
 
 session_start();
-
+ $s = new Searches();
 //if(ISSET($_SESSION['user']))
 
-sanitize($_POST['user']);
+$s->sanitize($_POST['user']);
 
-echo json_encode(Searches.getProfile($_POST['user']));
+echo json_encode($s->getProfile($_POST['user']));
 ?>
