@@ -1,9 +1,11 @@
 <?php
 include 'Searches.php';
 
+
+session_start();
+
 $conn = connect();
-$s = new Searches();
-$s->sanitize($_POST['user']);
+$s = new Searches($conn);
 
 $report = $s->getProfile($_SESSION['user']);
 
