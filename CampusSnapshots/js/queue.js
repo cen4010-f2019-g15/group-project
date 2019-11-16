@@ -7,8 +7,8 @@ $(function() {
 
     // Report comment button event handler
     $('.reportComment').on('click', function(){
-        value = $(this).siblings('.commentID').val()
-        modal = createReportCommentModal(value)
+        var value = $(this).siblings('.commentID').val()
+        var modal = createReportCommentModal(value)
         modal.on('hidden.bs.modal', function() {
             $(this).remove()
         })
@@ -17,8 +17,8 @@ $(function() {
 
     // Report post button event handler
     $('.reportPost').on('click', function(){
-        value = $(this).parents('.card').children('.postID').val()
-        modal = createReportPostModal(value)
+        var value = $(this).parents('.card').children('.postID').val()
+        var modal = createReportPostModal(value)
         modal.on('hidden.bs.modal', function() {
             $(this).remove()
         })
@@ -51,7 +51,7 @@ $(function() {
 
     // Create report post modal with id in hidden input field
     function createReportPostModal(id) {
-        modal = "<div class='modal' tabindex='-1' role='dialog'>" +
+        var modal = "<div class='modal' tabindex='-1' role='dialog'>" +
         "<div class='modal-dialog'>" + 
             "<div class='modal-content'>" +
                 "<div class='modal-header'>" +
@@ -78,7 +78,7 @@ $(function() {
 
     // Create report comment modal with id in hidden input field
     function createReportCommentModal(id) {
-        modal = "<div class='modal' tabindex='-1' role='dialog'>" +
+        var modal = "<div class='modal' tabindex='-1' role='dialog'>" +
         "<div class='modal-dialog'>" + 
             "<div class='modal-content'>" +
                 "<div class='modal-header'>" +
