@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
+
+    <title>New Post - Campus Snapshots</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">Campus Snapshots</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="reports.html">Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="post.html">Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Admin</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.html">Logout</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link">USERNAME</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h4 class="py-3 text-center display-4">New Post</h4>
+                <form enctype="multipart/form-data">
+
+                    <!-- TODO: Add funcitonality to choose report or event -->
+                    <!-- TODO: Add date/time selection for event start and end time -->
+
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Title"
+                            maxlength="30" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" class="form-control" name="location" id="location" placeholder="Location"
+                            maxlength="30" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" name="description" id="description" rows="3"
+                            placeholder="Description" maxlength="140" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" class="form-control-file" name="image" id="image" accept="image/*" required>
+                    </div>                    
+
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- JS Dependencies -->
+    <script src="js/lib/jquery/jquery-3.4.1.min.js"></script>
+    <script src="js/lib/popper/popper.min.js"></script>
+    <script src="js/lib/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- Page Functionality JS -->
+    <script src="js/post.js"></script>
+
+
+</body>
+
+</html>
