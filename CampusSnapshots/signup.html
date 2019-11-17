@@ -18,68 +18,78 @@
 
         <div class="row justify-content-center">
 
-            <div class="card my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center">
-                        Create an account now to join Campus Snapshots!
-                    </h5>
-                    <form id="signup">
-                        <div class="form-row pb-3">
+            <div class="col-md-6">
 
-                            <div class="col">
-                                <label for="firstName">First Name</label>
-                                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First name" maxlength="20" required>
+                <div class="card my-5 w-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            Create an account now to join Campus Snapshots!
+                        </h5>
+                        <form id="signup">
+                            <div class="form-row pb-3">
+
+                                <div class="col">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" class="form-control" name="firstName" id="firstName"
+                                        placeholder="First name" maxlength="20" required>
+                                </div>
+
+                                <div class="col">
+                                    <label for="firstName">Middle Initial</label>
+                                    <input type="text" class="form-control" name="middleInitial" id="middleInitial"
+                                        maxlength="1" placeholder="Middle initial" required>
+                                </div>
+
+                                <div class="col">
+                                    <label for="firstName">Last Name</label>
+                                    <input type="text" class="form-control" name="lastName" id="lastName" maxlength="20"
+                                        placeholder="Last name" required>
+                                </div>
+
                             </div>
 
-                            <div class="col">
-                                <label for="firstName">Middle Initial</label>
-                                <input type="text" class="form-control" name="middleInitial" id="middleInitial" maxlength="1" placeholder="Middle initial" required>
+                            <div class="mb-3">
+                                <span class="text-danger mb-3" id="nameError"></span>
                             </div>
 
-                            <div class="col">
-                                <label for="firstName">Last Name</label>
-                                <input type="text" class="form-control" name="lastName" id="lastName" maxlength="20" placeholder="Last name" required>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" name="username" id="username" maxlength="20"
+                                    placeholder="Username" required>
+                                <span class="text-danger" id="usernameError"></span>
                             </div>
 
-                        </div>
-                        
-                        <div class="mb-3">
-                            <span class="text-danger mb-3" id="nameError"></span>
-                        </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" class="form-control" name="email" id="email"
+                                    placeholder="Email address" maxlength="40" required>
+                                <span class="text-danger" id="emailError"></span>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Email address" maxlength="40" required>
-                            <span class="text-danger" id="emailError"></span>
-                        </div>
+                            <div class="form-group">
+                                <label for="password">Password (6-30 characters)</label>
+                                <input type="password" class="form-control" name="password" id="password" maxlength="30"
+                                    placeholder="Password" required>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" name="username" id="username" maxlength="20" placeholder="Username" required>
-                            <span class="text-danger" id="usernameError"></span>
-                        </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
+                                    maxlength="30" placeholder="Confirm password" required>
+                                <span class="text-danger" id="passwordError"></span>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" id="password" maxlength="30" placeholder="Password" required>
-                        </div>
+                            <div class="form-check mb-3">
+                                <input type="checkbox" class="form-check-input" value="" id="tosCheck">
+                                <label class="form-check-label" for="tosCheck">
+                                    I have read and agree to the User Agreement and Privacy Policy
+                                </label>
+                                <p><span class="text-danger" id="tosError"></span></p>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" maxlength="30" placeholder="Confirm password" required>
-                            <span class="text-danger" id="passwordError"></span>
-                        </div>
-
-                        <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" value="" id="tosCheck">
-                            <label class="form-check-label" for="tosCheck">
-                                I have read and agree to the User Agreement and Privacy Policy
-                            </label>
-                            <p><span class="text-danger" id="tosError"></span></p>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-                    </form>
+                            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
