@@ -6,7 +6,5 @@ session_start();
  $s = new Searches();
 //if(ISSET($_SESSION['user']))
 
-$s->sanitize($_POST['user']);
-
 echo json_encode($s->getProfile($_POST['user']));
 ?>

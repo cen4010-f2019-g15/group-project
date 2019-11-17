@@ -1,6 +1,6 @@
 <?php
 include 'Searches.php';
-
+require 'connection.php';
 
 session_start();
 

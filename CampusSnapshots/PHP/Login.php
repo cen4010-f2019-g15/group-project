@@ -1,9 +1,8 @@
 <?php
+require 'connection.php';
 
-require 'conneciton.php';
-
-$f = $_POST["f"];
-$r = $_POST["dp"];
+$f = $_POST["Username"];
+$r = $_POST["Password"];
 
 $conn = connect();
 
@@ -24,8 +23,8 @@ if($data === $result["Password"]){
     $_SESSION["user"] = $f;
     $_SESSION["UID"] = $result["UID"];
     
-    $login = $conn->prepare("UPDATE Person SET Active = DEFAULT WHERE UID = " + $_SESSION['UID']);
-    
+    $login = $conn->prepare("UPDATE Person SET Active = DEFAULT WHERE UID = ?");
+    $login->bindParam(1, $_SESSION['UID']);
     $login->execute();
     
     echo "True";
