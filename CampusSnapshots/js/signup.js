@@ -18,9 +18,10 @@ $(function () {
         e.preventDefault()
         if (validateForm()) {
             var formData = new FormData(this)
-            for (var pair of formData.entries()) {
-                console.log(pair[0] + ', ' + pair[1])
-            }
+            var username = $('#username').val()
+            $.post("php/NewUser.php", formData, function(response) {
+                window.location.href = "login.html"
+            })
         }
     })
 
@@ -33,7 +34,7 @@ $(function () {
         if (firstName.length <= 0 || firstName.length > NAME_MAX_LENGTH) {
             errorText.text('First Name must be within 1-20 characters long')
             return false
-        } else if (middleInitial.length <= 0 || middleInitial.length > MIDDLE_INITIAL_MAX_LENGTH) {
+        } else if (middleInitial.length > MIDDLE_INITIAL_MAX_LENGTH) {
             errorText.text('Middle Initial must be no more than 1 character long')
             return false
         } else if (lastName.length <= 0 || lastName.length > NAME_MAX_LENGTH) {
