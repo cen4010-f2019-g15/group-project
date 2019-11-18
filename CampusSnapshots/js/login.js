@@ -6,12 +6,22 @@ $(function() {
         var formData = new FormData(this)
         var errorText = $('#loginError')
 
-        for (var pair of formData.entries()) {
-            console.log(pair[0] + ', ' + pair[1])
-        }
+        $.ajax({
+            type: 'POST',
+            url: 'PHP/Login.php',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                if (response === 'true') {
+                    window.location.href = 'reports.html'
+                } else {
+                    console.log(response)
+                    errorText.text("Invalid Login Information")
+                }
+            }
+        })
 
-        // Test display of error text since getting repsonse from backend is not set up yet
-        errorText.text("Invalid Login Information")
     })
 
 })

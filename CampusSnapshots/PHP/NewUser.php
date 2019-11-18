@@ -9,7 +9,7 @@ $login = $conn->prepare("INSERT INTO Person VALUES
     );
 
 $login->bindParam(1, $_POST['username']);
-$login->bindParam(2, password_hash($_POST['password']));
+$login->bindParam(2, password_hash($_POST['password'], PASSWORD_DEFAULT));
 $login->bindParam(3, $_POST['email']);
 $login->bindParam(4, $_POST['firstName']);
 $login->bindParam(5, $_POST['lastName']);

@@ -19,8 +19,15 @@ $(function () {
         if (validateForm()) {
             var formData = new FormData(this)
             var username = $('#username').val()
-            $.post("php/NewUser.php", formData, function(response) {
-                window.location.href = "login.html"
+            $.ajax({
+                type: 'POST',
+                url: 'PHP/NewUser.php',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    window.location.href = 'login.html'
+                }
             })
         }
     })
