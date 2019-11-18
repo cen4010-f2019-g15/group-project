@@ -8,15 +8,15 @@ class Searches
         $data = htmlspecialchars($data);
     }
     function __construct($conn){
-        $this->conn = $conn;
+        self::$conn = $conn;
         //add security here
     }
     
-    function getProfile($profile){
+    function getProfile($ID){
         
-        $login = $this->conn->prepare("SELECT Type, Acitve, UserName
- FROM Person WHERE UserName = ?");
-        $login->bindParam(1, $profile);
+        $login = self::$conn->prepare("SELECT UserName, Type, Active
+ FROM Person WHERE UID = ?");
+        $login->bindParam(1, $ID);
         
         $login->execute();
         $login->setFetchMode(PDO::FETCH_ASSOC);
@@ -26,8 +26,8 @@ class Searches
     }
     function getPosts($IDType, $ID){
         
-        $login = $this->conn->prepare("SELECT Made, 
-        PostText, RID, EID FROM Posts WHERE ? = ?");
+        $login = self::$conn->prepare("SELECT Person.UserName, Made, 
+        PostText, RID, EID FROM Posts INNER JOIN UID ON Person.UID = Posts.UID WHERE ? = ?");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
         
@@ -39,8 +39,8 @@ class Searches
         return $result;
     }
     function getEvents($IDType = "EID", $ID = "EID"){
-        $login = $this->conn->prepare("SELECT Person.UserName,
-        Name, StartTime, EndTime, Description FROM Events INNER JOIN UID ON Reports.UID = Person.UID WHERE ? = ?");
+        $login = self::$conn->prepare("SELECT Person.UserName,
+        Name, StartTime, EndTime, Description FROM Events INNER JOIN UID ON Events.UID = Person.UID WHERE ? = ?");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
         
@@ -53,7 +53,7 @@ class Searches
     }
     function getProblems($IDType = "RID", $ID = "RID"){
         
-        $login = $this->conn->prepare("SELECT Person.UserName, Type, Name
+        $login = self::$conn->prepare("SELECT Person.UserName, Type, Name
         Reported, Status, Description FROM Reports INNER JOIN UID ON Reports.UID = Person.UID WHERE ? = ? ");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
@@ -63,6 +63,14 @@ class Searches
         $result = $login->fetchAll();
         
         return $result;
+    }
+    private function flatten(){
+        $toJSON = array();
+        foreach($result as $k => $v){
+            $key = $v['UserName'];//holdout one
+            unset($v['UserName']);
+            $toJSON[$key] = $v;
+        }
     }
 }
 ?>

@@ -4,11 +4,19 @@ include 'connection.php';
 session_start();
 
 $conn = connect();
-$login = $conn->prepare("INSERT INTO Person VALUES (DEFAULT, ?, ?, DEFAULT, DEFAULT)");
+$login = $conn->prepare("INSERT INTO Person VALUES 
+(DEFAULT, ?, ?, ?, ?, ?, ?, DEFAULT, DEFAULT)"
+    );
 
-$login->bindParam(1, $_POST['Name']);
-$login->bindParam(2, $_POST['Password']);
+$login->bindParam(1, $_POST['username']);
+$login->bindParam(2, password_hash($_POST['password']));
+$login->bindParam(3, $_POST['email']);
+$login->bindParam(4, $_POST['firstName']);
+$login->bindParam(5, $_POST['lastName']);
+$login->bindParam(6, $_POST['middleInitial']);
 
 $login->execute();
-
-echo 'New Event Created';
+if($login->errorCode() !== '00000')
+    echo 'false';
+else
+    echo 'true';

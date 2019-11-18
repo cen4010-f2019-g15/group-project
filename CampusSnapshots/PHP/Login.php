@@ -18,7 +18,7 @@ $login->execute();
 $login->setFetchMode(PDO::FETCH_ASSOC);
 $result = $login->fetch();
 
-if($data === $result["Password"]){
+if(password_verify($r, $result[0]["Password"])){
     session_start();
     $_SESSION["user"] = $f;
     $_SESSION["UID"] = $result["UID"];
@@ -27,9 +27,9 @@ if($data === $result["Password"]){
     $login->bindParam(1, $_SESSION['UID']);
     $login->execute();
     
-    echo "True";
+    echo 'true';
 }
 else{
-    echo "False";
+    echo 'false';
 }
 ?>
