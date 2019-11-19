@@ -39,8 +39,8 @@ class Searches
         return $result;
     }
     function getEvents($IDType = "EID", $ID = "EID"){
-        $login = self::$conn->prepare("SELECT Person.UserName, EID,
-        Name, StartDate, EndDate, Description FROM Events INNER JOIN Person ON Events.UID = Person.UID WHERE ? = ?");
+        $login = self::$conn->prepare("SELECT Person.UserName, EID, Name,
+        Image, StartDate, EndDate, Description FROM Events INNER JOIN Person ON Events.UID = Person.UID WHERE ? = ?");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
         
@@ -53,8 +53,9 @@ class Searches
     }
     function getProblems($IDType = "RID", $ID = "RID"){
         
-        $login = self::$conn->prepare("SELECT Person.UserName, RID, Type, Name
-        Reported, Status, Description FROM Reports INNER JOIN Person ON Reports.UID = Person.UID WHERE ? = ? ");
+        $login = self::$conn->prepare("SELECT Person.UserName, RID, 
+        Name, Type, Reported, Type, Status, Description 
+        FROM Reports INNER JOIN Person ON Reports.UID = Person.UID WHERE ? = ? ");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
         
