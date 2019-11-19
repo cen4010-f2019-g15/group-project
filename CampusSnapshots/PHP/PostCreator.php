@@ -11,7 +11,8 @@
 		if(!chdir($_SESSION['UID'])) {
 			die("Error changing Directory");
 		}
-		if (isset($_POST['event'])) {
+	  	$posttype = $_POST["type"];
+		if ($posttype == 'event') {
 			$conn = connect();
 			$title = $_POST['title'];
 			$location = $_POST['location'];
@@ -33,7 +34,7 @@
 			$addevent->bindParam(6, $_POST['description']));
 			$addevent->execute();
 		}
-		elseif (isset($_POST['report'])) {
+		elseif ($posttype == "report") {
 			$conn = connect();
 			$title = $_POST['title'];
 			$location = $_POST['location'];
