@@ -1,7 +1,7 @@
 <?php
    require 'PHP/connection.php';
    if (empty($_POST['title']) == true and empty($_POST['location']) == true and empty($_POST['description']) == true {
-		$errorMessage .= <li>"You are missing either a title, location, or description. Please enter this information and try again."</li>
+	$errorMessage .= <li>"You are missing either a title, location, or description. Please enter this information and try again."</li>
    }
    elseif (empty($_POST['title']) == false and empty($_POST['location']) == false and empty($_POST['description']) == false ) {
 		chdir('../Files/Events/');
