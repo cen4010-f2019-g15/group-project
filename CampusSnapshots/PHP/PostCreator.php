@@ -40,7 +40,7 @@
 			$description = $_POST['description'];
 			$type = $_POST['reporttype']; //if we choose to add in selecting a type, edit this line with the corrent name of the field!
 
-			$addreport = $conn->prepare("INSERT INTO Reports VALUES(DEFAULT, ?, ?, ?, DEFAULT, ?, ?, ?)");
+			$addreport = $conn->prepare("INSERT INTO Reports VALUES(DEFAULT, ?, ?, ?, DEFAULT, DEFAULT, ?, ?)");
 			$addreport->bindParam(1, $_SESSION['UID']));
 			$addreport->bindParam(2, $title));
 			if(isset($_FILES["fileToUpload"])){
@@ -48,8 +48,7 @@
 				$login->bindParam(3, $_COOKIE['CurrentFile']);//given null on no picture
 			}
 			$addreport->bindParam(4, $type);
-			$addreport->bindParam(5, 1));
-			$addreport->bindParam(6, $description));
+			$addreport->bindParam(5, $description));
 			$addreport->execute();
 		}
    }
