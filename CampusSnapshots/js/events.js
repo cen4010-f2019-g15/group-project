@@ -1,11 +1,7 @@
 $(function () {
-    $('#queue').append(
-        createEvent(1, "Event Title", "img/header-image.jpg", "EE96", "Upcoming", "7:30 P.M. 11/20/2019", "10:30 P.M. 11/20/2019", "Event Description", "A User")
-    )
-
-    $('#queue').append(
-        createEvent(2, "Club Recruitment", "img/header-image.jpg", "Breezeway", "Upcoming", "12:30 P.M. 11/20/2019", "3:30 P.M. 11/20/2019", "Come join some cool club!", "A User")
-    )
+    $.post('PHP/Event.php', function(response) {
+        console.log(response)
+    })
 
     // Toggle comments on button click
     $('.toggleComments').on('click', function () {
