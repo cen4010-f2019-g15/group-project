@@ -49,7 +49,10 @@ $(function() {
             contentType: false,
             processData: false,
             success: function(response) {
-                console.log(response)
+                var state = $('input[name="type"]:checked').val()
+                if (state === 'event') {
+                    window.location.href = 'events.php'
+                } else window.location.href = 'reports.php'
             }
         })
 

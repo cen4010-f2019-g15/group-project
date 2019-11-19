@@ -1,11 +1,11 @@
 $(function () {
-    $('#queue').append(
-        createReport(1, "Report Title", "img/header-image.jpg", "EE96", "Unresolved", "7:30 P.M. 11/20/2019", "Report Description", "A User")
-    )
-
-    $('#queue').append(
-        createReport(2, "Trash is Full", "img/header-image.jpg", "PK-103", "Unresolved", "7:30 A.M. 11/20/2019", "The trashcan in the starwell is overflowing.", "A User")
-    )
+    $.post('PHP/Report.php', function (response) {
+        var json = JSON.parse(response)
+        for (var item in json) {
+            var report = createReport(json[item].RID, json[item].Name, "img/header-image.jpg", json[item].Location, json[item].Status, json[item].Reported, json[item].Description, json[item].UserName)
+            $('#queue').append(report)
+        }
+    })
 
     // Toggle comments on button click
     $('.toggleComments').on('click', function () {

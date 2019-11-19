@@ -26,7 +26,7 @@
 			$title = htmlspecialchars($title);
 			$location = htmlspecialchars($location);
 			$description = htmlspecialchars($description);
-			$addevent = $conn->prepare("INSERT INTO Events VALUES( DEFAULT, ?, ?, DEFAULT, ?, ?, ?)");
+			$addevent = $conn->prepare("INSERT INTO Events VALUES( DEFAULT, ?, ?, DEFAULT, ?, ?, ?, ?)");
 			$addevent->bindParam(1, $_SESSION['UID']);
 			$addevent->bindParam(2, $title);
 			/*
@@ -35,9 +35,10 @@
 				$addevent->bindParam(3, $_COOKIE['CurrentFile']); //given null on no picture
 			}
 			*/
-			$addevent->bindParam(3, $_POST['startDate']);
-			$addevent->bindParam(4, $_POST['endDate']);
-			$addevent->bindParam(5, $_POST['description']);
+			$addevent->bindParam(3, $startdate);
+			$addevent->bindParam(4, $enddate);
+			$addevent->bindParam(5, $location);
+			$addevent->bindParam(6, $description);
 			$addevent->execute();
 		}
 		elseif ($posttype == "report") {
@@ -52,7 +53,7 @@
 			$type = trim($type);
 			$type = stripslashes($type);
 			$type = htmlspecialchars($type);
-			$addreport = $conn->prepare("INSERT INTO Reports VALUES(DEFAULT, ?, ?, DEFAULT, DEFAULT, ?, ?, ?)");
+			$addreport = $conn->prepare("INSERT INTO Reports VALUES(DEFAULT, ?, ?, DEFAULT, DEFAULT, ?, ?, ?, ?)");
 			$addreport->bindParam(1, $_SESSION['UID']);
 			$addreport->bindParam(2, $title);
 			/*
@@ -63,7 +64,8 @@
 			*/
 			$addreport->bindParam(3, $type);
 			$addreport->bindValue(4, 1);
-			$addreport->bindParam(5, $description);
+			$addreport->bindParam(5, $location);
+			$addreport->bindParam(6, $description);
 			$addreport->execute();
 		}
    }

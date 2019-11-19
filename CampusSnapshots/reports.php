@@ -1,3 +1,11 @@
+<?php
+session_start();
+$username = "";
+if (isset($_SESSION['user'])) {
+    $username = $_SESSION['user'];
+}
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -15,34 +23,60 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="home.html">Campus Snapshots</a>
+            <a class="navbar-brand" href="index.php">Campus Snapshots</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="reports.html">Reports</a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="reports.php">Reports</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="events.html">Events</a>
+                        <a class="nav-link" href="events.php">Events</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="post.html">Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin.html">Admin</a>
-                    </li>
+                    <?php
+                    if (isset($_SESSION['user'])) {
+                        echo <<<_END
+                        <li class="nav-item">
+                            <a class="nav-link" href="post.php">Post</a>
+                        </li>
+_END;
+                    }
+                    
+                    if (isset($_SESSION['admin'])) {
+                        echo <<<_END
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin.php">Admin</a>
+                        </li>
+_END;
+                    }
+                    ?>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.html">Logout</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link">USERNAME</a>
-                    </li>
+                    <?php
+                    if(isset($_SESSION['user'])) {
+                        echo <<<_END
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link">$username</a>
+                        </li>
+_END;
+                    } else {
+                        echo <<<_END
+                        <li class="nav-item">
+                            <a class="nav-link" href="signup.php">Signup</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Login</a>
+                        </li>
+_END;
+                    }
+                    ?>
                 </ul>
             </div>
 

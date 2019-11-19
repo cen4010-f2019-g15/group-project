@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (isset($_SESSION['user'])) {
+    // Redirect user if they are already signed in
+    header('Location: events.php');
+    die();
+}
+?>
+
 <!DOCTYPE html>
 
 <html>

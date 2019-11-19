@@ -31,16 +31,16 @@
     <div class="container py-3">
         <div class="row">
             <div class="col-md-3 py-1">
-                <a href="events.html" class="btn btn-primary w-100">Events</a>
+                <a href="events.php" class="btn btn-primary w-100">Events</a>
             </div>
             <div class="col-md-3 py-1">
-                <a href="reports.html" class="btn btn-primary w-100">Reports</a>
+                <a href="reports.php" class="btn btn-primary w-100">Reports</a>
             </div>
             <div class="col-md-3 py-1">
-                <a href="login.html" class="btn btn-primary w-100">Login</a>
+                <a href="login.php" class="btn btn-primary w-100">Login</a>
             </div>
             <div class="col-md-3 py-1">
-                <a href="signup.html" class="btn btn-primary w-100">Signup</a>
+                <a href="signup.php" class="btn btn-primary w-100">Signup</a>
             </div>
         </div>
     </div>

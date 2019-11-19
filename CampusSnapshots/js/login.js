@@ -14,9 +14,8 @@ $(function() {
             processData: false,
             success: function(response) {
                 if (response === 'true') {
-                    window.location.href = 'reports.html'
+                    window.location.href = 'reports.php'
                 } else {
-                    console.log(response)
                     errorText.text("Invalid Login Information")
                 }
             }

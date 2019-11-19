@@ -1,6 +1,10 @@
 $(function () {
-    $.post('PHP/Event.php', function(response) {
-        console.log(response)
+    $.post('PHP/Event.php', function (response) {
+        var json = JSON.parse(response)
+        for (var item in json) {
+            var event = createEvent(json[item].EID, json[item].Name, "img/header-image.jpg", json[item].Location, "Upcoming", json[item].StartDate, json[item].EndDate, json[item].Description, json[item].UserName)
+            $('#queue').append(event)
+        }
     })
 
     // Toggle comments on button click
