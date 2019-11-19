@@ -15,8 +15,9 @@
 		}
 		*/
 	  	$posttype = $_POST["type"];
+	   	$conn = connect();
 		if ($posttype == 'event') {
-			$conn = connect();
+
 			$title = $_POST['title'];
 			$location = $_POST['location'];
 			$startdate = $_POST['startDate'];
@@ -40,7 +41,7 @@
 			$addevent->execute();
 		}
 		elseif ($posttype == "report") {
-			$conn = connect();
+			
 			$title = $_POST['title'];
 			$location = $_POST['location'];
 			$description = $_POST['description'];
@@ -51,7 +52,6 @@
 			$type = trim($type);
 			$type = stripslashes($type);
 			$type = htmlspecialchars($type);
-			$file = file_get_contents($_FILES['image']['tmp_name']);
 			$addreport = $conn->prepare("INSERT INTO Reports VALUES(DEFAULT, ?, ?, DEFAULT, DEFAULT, ?, ?, ?)");
 			$addreport->bindParam(1, $_SESSION['UID']);
 			$addreport->bindParam(2, $title);
