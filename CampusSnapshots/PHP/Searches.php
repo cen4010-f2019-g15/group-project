@@ -54,7 +54,7 @@ class Searches
     function getProblems($IDType = "RID", $ID = "RID"){
         
         $login = self::$conn->prepare("SELECT Person.UserName, RID, 
-        Name, Type, Reported, Type, Status, Description 
+        Name, Type, Reported, Type, Status, Location, Description 
         FROM Reports INNER JOIN Person ON Reports.UID = Person.UID WHERE ? = ? ");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
