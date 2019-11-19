@@ -12,16 +12,15 @@
 			die("Error changing Directory");
 		}
 	  	$posttype = $_POST["type"];
+	   	$conn = connect();
 		if ($posttype == 'event') {
-			$conn = connect();
+
 			$title = $_POST['title'];
 			$location = $_POST['location'];
 			$startdate = $_POST['startDate'];
 			$enddate = $_POST['endDate'];
 			$description = $_POST['description'];
-			$title = htmlspecialchars($title);
-			$location = htmlspecialchars($location);
-			$description = htmlspecialchars($description);
+
 			$addevent = $conn->prepare("INSERT INTO Event VALUES( DEFAULT, ?, ?, ?, ?, ?, ?)");
 			$addevent->bindParam(1, $_SESSION['UID']));
 			$addevent->bindParam(2, $title));
@@ -35,17 +34,12 @@
 			$addevent->execute();
 		}
 		elseif ($posttype == "report") {
-			$conn = connect();
+			
 			$title = $_POST['title'];
 			$location = $_POST['location'];
 			$description = $_POST['description'];
 			$type = $_POST['reporttype']; //if we choose to add in selecting a type, edit this line with the corrent name of the field!
-			$title = htmlspecialchars($title);
-			$location = htmlspecialchars($location);
-			$description = htmlspecialchars($description);
-			$type = trim($type);
-			$type = stripslashes($type;
-			$type = htmlspecialchars($type);
+
 			$addreport = $conn->prepare("INSERT INTO Reports VALUES(DEFAULT, ?, ?, ?, DEFAULT, ?, ?, ?)");
 			$addreport->bindParam(1, $_SESSION['UID']));
 			$addreport->bindParam(2, $title));
