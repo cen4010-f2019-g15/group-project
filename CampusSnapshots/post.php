@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['user'])) {
     // Redirect user if they are already signed in
-    header('login.php');
+    header('Location: login.php');
     die();
 }
 $username = $_SESSION['user'];
