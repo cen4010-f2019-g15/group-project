@@ -27,7 +27,7 @@ class Searches
     function getPosts($IDType, $ID){
         
         $login = self::$conn->prepare("SELECT Person.UserName, Made, 
-        PostText, RID, EID FROM Posts INNER JOIN UID ON Person.UID = Posts.UID WHERE ? = ?");
+        PostText, RID, EID FROM Posts INNER JOIN Person ON Person.UID = Posts.UID WHERE ? = ?");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
         
@@ -39,8 +39,8 @@ class Searches
         return $result;
     }
     function getEvents($IDType = "EID", $ID = "EID"){
-        $login = self::$conn->prepare("SELECT Person.UserName,
-        Name, StartDate, EndDate, Description FROM Events INNER JOIN UID ON Events.UID = Person.UID WHERE ? = ?");
+        $login = self::$conn->prepare("SELECT Person.UserName, EID,
+        Name, StartDate, EndDate, Description FROM Events INNER JOIN Person ON Events.UID = Person.UID WHERE ? = ?");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
         
@@ -53,8 +53,8 @@ class Searches
     }
     function getProblems($IDType = "RID", $ID = "RID"){
         
-        $login = self::$conn->prepare("SELECT Person.UserName, Type, Name
-        Reported, Status, Description FROM Reports INNER JOIN UID ON Reports.UID = Person.UID WHERE ? = ? ");
+        $login = self::$conn->prepare("SELECT Person.UserName, RID, Type, Name
+        Reported, Status, Description FROM Reports INNER JOIN Person ON Reports.UID = Person.UID WHERE ? = ? ");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
         
@@ -63,14 +63,7 @@ class Searches
         $result = $login->fetchAll();
         
         return $result;
-    }
-    private function flatten(){
-        $toJSON = array();
-        foreach($result as $k => $v){
-            $key = $v['UserName'];//holdout one
-            unset($v['UserName']);
-            $toJSON[$key] = $v;
-        }
+    
     }
 }
 ?>
