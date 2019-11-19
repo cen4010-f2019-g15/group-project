@@ -6,14 +6,16 @@ $(function() {
         var startTime = $('#startTime')
         var endDate = $('#endDate')
         var endTime = $('#endTime')
+        var reportType = $('#reportType')
 
         if (state === 'report') {
-            console.log(state)
+            $('#reportFields').show(200)
             $('#eventFields').hide(200)
             startDate.prop('required', false)
             startTime.prop('required', false)
             endDate.prop('required', false)
             endTime.prop('required', false)
+            reportType.prop('required', true)
         }
     })
 
@@ -23,14 +25,16 @@ $(function() {
         var startTime = $('#startTime')
         var endDate = $('#endDate')
         var endTime = $('#endTime')
+        var reportType = $('#reportType')
 
         if (state === 'event') {
-            console.log(state)
+            $('#reportFields').hide(200)
             $('#eventFields').show(200)
             startDate.prop('required', true)
             startTime.prop('required', true)
             endDate.prop('required', true)
             endTime.prop('required', true)
+            reportType.prop('required', false)
         }
     })
 
