@@ -40,7 +40,7 @@ class Searches
     }
     function getEvents($IDType = "EID", $ID = "EID"){
         $login = self::$conn->prepare("SELECT Person.UserName,
-        Name, StartTime, EndTime, Description FROM Events INNER JOIN UID ON Events.UID = Person.UID WHERE ? = ?");
+        Name, StartDate, EndDate, Description FROM Events INNER JOIN UID ON Events.UID = Person.UID WHERE ? = ?");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
         
