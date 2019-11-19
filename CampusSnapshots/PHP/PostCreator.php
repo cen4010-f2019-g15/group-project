@@ -27,7 +27,7 @@
 			if(isset($_FILES["fileToUpload"])){
 				include 'fileUpload.php';
 				$addevent->bindParam(3, $_COOKIE['CurrentFile']); //given null on no picture
-}			}
+			}
 			$addevent->bindParam(4, $_POST['startDate']));
 			$addevent->bindParam(5, $_POST['endDate']));
 			$addevent->bindParam(6, $_POST['description']));
@@ -51,7 +51,7 @@
 			if(isset($_FILES["fileToUpload"])){
 				include 'fileUpload.php';
 				$login->bindParam(3, $_COOKIE['CurrentFile']);//given null on no picture
-}			}
+			}
 			$addreport->bindParam(4, $type);
 			$addreport->bindParam(5, 1));
 			$addreport->bindParam(6, $description));
