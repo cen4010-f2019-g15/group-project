@@ -27,7 +27,8 @@ class Searches
     function getPosts($IDType, $ID){
         
         $login = self::$conn->prepare("SELECT Person.UserName, Made, 
-        PostText, RID, EID FROM Posts INNER JOIN Person ON Person.UID = Posts.UID WHERE ? = ?");
+        PostText, RID, EID 
+        FROM Posts INNER JOIN Person ON Person.UID = Posts.UID WHERE ? = ?");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
         
@@ -40,7 +41,9 @@ class Searches
     }
     function getEvents($IDType = "EID", $ID = "EID"){
         $login = self::$conn->prepare("SELECT Person.UserName, EID, Name,
-        Image, StartDate, EndDate, Location, Description FROM Events INNER JOIN Person ON Events.UID = Person.UID WHERE ? = ?");
+        Image, StartDate, EndDate, Description 
+        FROM Events INNER JOIN Person ON Events.UID = Person.UID WHERE ? = ?");
+        
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
         
@@ -54,7 +57,7 @@ class Searches
     function getProblems($IDType = "RID", $ID = "RID"){
         
         $login = self::$conn->prepare("SELECT Person.UserName, RID, 
-        Name, Image, Reported, Reports.Type, Status, Location, Description 
+        Name, Image, Reported, Type, Status, Location, Description 
         FROM Reports INNER JOIN Person ON Reports.UID = Person.UID WHERE ? = ? ");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
