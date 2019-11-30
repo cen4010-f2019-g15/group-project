@@ -4,35 +4,40 @@
 //TODO: Need to redesign how Location, Times, and Status are displayed on posts to look better on mobile
 
 // Create report
-function createReport(id, title, image, location, status, time, description, user) {
+function createReport(id, title, image, location, type, status, time, description, user) {
         var report = "<div class='card pb-2 mb-3'>" +
-        "<input type='hidden' class='postID' value='" + id + "'>" 
-+        "<img src='" + image + "' class='card-img-top'>" 
-+        "<div class='card-body'>"
-+        "<div class='row justify-content-between'>" 
-+                "<div class='col-md-6'>" +
-                    "<h5 class='card-title'>" + title + "</h5>" 
-+                "</div>" 
-+                "<div class='col-auto'>" 
-+                    "<span class='pr-2'>" + location + "</span>" 
-+                    "<span class='px-2'>" + time + "</span>" 
-+                    "<span class='pl-2'>" + status + "</span>" 
-+                "</div>" 
-+            "</div>" 
-+            "<p class='card-text'>" + description + "</p>"
-+            "<div class='row justify-content-between'>" 
-+                "<div class='col-auto py-1'>" 
-+                    "<h6><a href='>" + user + "</a></h6>" 
-+                "</div>" 
-+                "<div class='col-auto py-1'>" 
-+                    // Disable commenting and reporting functionality for now
+        "<input type='hidden' class='postID' value='" + id + "'>" +
+        "<img src='" + image + "' class='card-img-top'>" +
+        "<div class='card-body'>" +
+            "<div class='row justify-content-between'>" +
+                "<div class='col-md-6'>" +
+                    "<div class='row'>" +
+                        "<h5 class='card-title'>" + title + "</h5>" +
+                    "</div>" +
+                    "<div class='row'>" +
+                        "<p class='card-text'>" + description + "</p>" +
+                    "</div>" +
+                "</div>" + 
+                "<div class='col-auto'>" +
+                    "<div class='row py-1'>" + location + "</div>" +
+                    "<div class='row py-1'>" + time + "</div>" +
+                    "<div class='row py-1'>" + type + "</div>" +
+                    "<div class='row py-1'>" + status + "</div>" +
+                "</div>" +
+            "</div>" +
+            "<div class='row justify-content-between'>" +
+                "<div class='col-auto py-1'>" +
+                    "<h6>" + user + "</h6>" +
+                "</div>" +
+                "<div class='col-auto py-1'>" +
+                    // Disable commenting and reporting functionality for now
                     //"<button type='button' class='btn btn-link btn-sm toggleComments'>Toggle comments</button>" +
                     //"<button type='button' class='btn btn-link btn-sm reportPost'>Report Post</button>" +
-                "</div>" 
-+            "</div>"
-+    "</div>"
+                "</div>" +
+            "</div>" +
+    "</div>" +
     /* Disable commenting and reporting functionality for now
-+        "<div class='card-footer comments' style='display:none;'>" 
+        "<div class='card-footer comments' style='display:none;'>" +
             "<form class='border-bottom py-2' id='commentForm'>" +
                 "<div class='form-group'>" +
                     "<input type='hidden' name='postID' value='"+ id + "'>" +
@@ -43,7 +48,7 @@ function createReport(id, title, image, location, status, time, description, use
             "</form>" +
         "</div>" +
         */
-+    "</div>"
+    "</div>"
     return $(report)
 }
 
@@ -55,20 +60,23 @@ function createEvent(id, title, image, location, status, starttime, endtime, des
         "<div class='card-body'>" +
             "<div class='row justify-content-between'>" +
                 "<div class='col-md-6'>" +
-                    "<h5 class='card-title'>" + title + "</h5>" +
-                "</div>" +
+                    "<div class='row'>" +
+                        "<h5 class='card-title'>" + title + "</h5>" +
+                    "</div>" +
+                    "<div class='row'>" +
+                        "<p class='card-text'>" + description + "</p>" +
+                    "</div>" +
+                "</div>" + 
                 "<div class='col-auto'>" +
-                    "<span class='pr-2'>" + location + "</span>" +
-                    "<span class='px-2'>" + starttime + "</span>" +
-                    "-" +
-                    "<span class='px-2'>" + endtime + "</span>" +
-                    "<span class='pl-2'>" + status + "</span>" +
+                    "<div class='row py-1'>" + location + "</dviv>" +
+                    "<div class='row py-1'>Start: " + starttime + "</div>" +
+                    "<div class='row py-1'>End: " + endtime + "</div>" +
+                    "<div class='row py-1'>" + status + "</div>" +
                 "</div>" +
             "</div>" +
-            "<p class='card-text'>" + description + "</p>" +
             "<div class='row justify-content-between'>" +
                 "<div class='col-auto py-1'>" +
-                    "<h6><a href='>" + user + "</a></h6>" +
+                    "<h6>" + user + "</h6>" +
                 "</div>" +
                 "<div class='col-auto py-1'>" +
                     // Disable commenting and reporting functionality for now

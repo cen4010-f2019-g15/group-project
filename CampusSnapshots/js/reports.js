@@ -2,7 +2,7 @@ $(function () {
     $.post('PHP/Report.php', function (response) {
         var json = JSON.parse(response)
         for (var item in json) {
-            var report = createReport(json[item].RID, json[item].Name, "img/header-image.jpg", json[item].Location, json[item].Status, json[item].Reported, json[item].Description, json[item].UserName)
+            var report = createReport(json[item].RID, json[item].Name, "img/header-image.jpg", json[item].Location, json[item].Type, json[item].Status, json[item].Reported, json[item].Description, json[item].UserName)
             $('#queue').append(report)
         }
     })

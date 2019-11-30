@@ -97,16 +97,16 @@ _END;
                     </button>
                     <div class="dropdown-menu">
                         <div class="form-check dropdown-item">
+                            <input class="form-check-input" type="checkbox" id="unresolved" value="unresolved" checked>
+                            <label class="form-check-label" for="unresolved">Unresolved</label>
+                        </div>
+                        <div class="form-check dropdown-item">
                             <input class="form-check-input" type="checkbox" id="inProgress" value="inProgress" checked>
                             <label class="form-check-label" for="inProgress">In-Progress</label>
                         </div>
                         <div class="form-check dropdown-item">
-                            <input class="form-check-input" type="checkbox" id="upcoming" value="upcoming" checked>
-                            <label class="form-check-label" for="upcoming">Upcoming</label>
-                        </div>
-                        <div class="form-check dropdown-item">
-                            <input class="form-check-input" type="checkbox" id="finished" value="finished" checked>
-                            <label class="form-check-label" for="finished">Finished</label>
+                            <input class="form-check-input" type="checkbox" id="resolved" value="resolved" checked>
+                            <label class="form-check-label" for="resolved">Resolved</label>
                         </div>
                     </div>
                 </div>
