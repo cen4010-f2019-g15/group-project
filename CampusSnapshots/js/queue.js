@@ -6,33 +6,33 @@
 // Create report
 function createReport(id, title, image, location, status, time, description, user) {
         var report = "<div class='card pb-2 mb-3'>" +
-        "<input type='hidden' class='postID' value='" + id + "'>" +
-        "<img src='" + image + "' class='card-img-top'>" +
-        "<div class='card-body'>" +
-            "<div class='row justify-content-between'>" +
-                "<div class='col-md-6'>" +
-                    "<h5 class='card-title'>" + title + "</h5>" +
-                "</div>" +
-                "<div class='col-auto'>" +
-                    "<span class='pr-2'>" + location + "</span>" +
-                    "<span class='px-2'>" + time + "</span>" +
-                    "<span class='pl-2'>" + status + "</span>" +
-                "</div>" +
-            "</div>" +
-            "<p class='card-text'>" + description + "</p>" +
-            "<div class='row justify-content-between'>" +
-                "<div class='col-auto py-1'>" +
-                    "<h6><a href='>" + user + "</a></h6>" +
-                "</div>" +
-                "<div class='col-auto py-1'>" +
-                    // Disable commenting and reporting functionality for now
+        "<input type='hidden' class='postID' value='" + id + "'>" 
++        "<img src='" + image + "' class='card-img-top'>" 
++        "<div class='card-body'>"
++        "<div class='row justify-content-between'>" 
++                "<div class='col-md-6'>" +
+                    "<h5 class='card-title'>" + title + "</h5>" 
++                "</div>" 
++                "<div class='col-auto'>" 
++                    "<span class='pr-2'>" + location + "</span>" 
++                    "<span class='px-2'>" + time + "</span>" 
++                    "<span class='pl-2'>" + status + "</span>" 
++                "</div>" 
++            "</div>" 
++            "<p class='card-text'>" + description + "</p>"
++            "<div class='row justify-content-between'>" 
++                "<div class='col-auto py-1'>" 
++                    "<h6><a href='>" + user + "</a></h6>" 
++                "</div>" 
++                "<div class='col-auto py-1'>" 
++                    // Disable commenting and reporting functionality for now
                     //"<button type='button' class='btn btn-link btn-sm toggleComments'>Toggle comments</button>" +
                     //"<button type='button' class='btn btn-link btn-sm reportPost'>Report Post</button>" +
-                "</div>" +
-            "</div>" +
-    "</div>" +
+                "</div>" 
++            "</div>"
++    "</div>"
     /* Disable commenting and reporting functionality for now
-        "<div class='card-footer comments' style='display:none;'>" +
++        "<div class='card-footer comments' style='display:none;'>" 
             "<form class='border-bottom py-2' id='commentForm'>" +
                 "<div class='form-group'>" +
                     "<input type='hidden' name='postID' value='"+ id + "'>" +
@@ -43,7 +43,7 @@ function createReport(id, title, image, location, status, time, description, use
             "</form>" +
         "</div>" +
         */
-    "</div>"
++    "</div>"
     return $(report)
 }
 
