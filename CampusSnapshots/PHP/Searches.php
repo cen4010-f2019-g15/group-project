@@ -26,7 +26,7 @@ class Searches
     }
     function getPosts($IDType, $ID){
         
-        $login = self::$conn->prepare("SELECT Person.UserName, PID, Made, 
+        $login = self::$conn->prepare("SELECT Person.UserName, PoID, Made, 
         PostText, RID, EID 
         FROM Posts INNER JOIN Person ON Person.UID = Posts.UID WHERE ? = ?");
         $login->bindParam(1, $IDType);
@@ -57,7 +57,7 @@ class Searches
     function getProblems($IDType = "RID", $ID = "RID"){
         
         $login = self::$conn->prepare("SELECT Person.UserName, RID, 
-        Name, Image, Reported, Type, Status, Location, Description 
+        Name, Image, Reported, Reports.Type, Status, Location, Description 
         FROM Reports INNER JOIN Person ON Reports.UID = Person.UID WHERE ? = ? ");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
