@@ -59,45 +59,45 @@
         <table class="table table-bordered table-striped text-center">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Check</th>
                     <th scope="col">Issues</th>
                     <th scope="col">Author of Post</th>
                     <th scope="col">Category</th>
                     <th scope="col">Date Reported On</th>
-                    <th scope="col">Trash</th>
+                    <th scope="col">Remove Report</th>
+                    <th scope="col">Delete Post</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <input type="hidden" class="reportID" value="REPORT_VALUE1">
-                    <td><input type="checkbox"></td>
                     <td>Reported Post 1</td>
                     <td>John Doe</td>
-                    <td>-</td>
+                    <td class='type'>Report</td>
                     <td>11/12/2019</td>
-                    <td><button type="button" class="btn btn-danger deleteReport">Delete</button></td>
+                    <td><button type="button" class="btn btn-primary removeReport">Remove Report</button></td>
+                    <td><button type="button" class="btn btn-danger deletePost">Delete Post</button></td>
                 </tr>
                 <tr>
                     <input type="hidden" class="reportID" value="REPORT_VALUE2">
-                    <td><input type="checkbox"></td>
                     <td>Reported Post 2</td>
                     <td>Jane Doe</td>
-                    <td>-</td>
+                    <td class='type'>Comment</td>
                     <td>11/12/2019</td>
-                    <td><button type="button" class="btn btn-danger deleteReport">Delete</button></td>
+                    <td><button type="button" class="btn btn-primary removeReport">Remove Report</button></td>
+                    <td><button type="button" class="btn btn-danger deletePost">Delete Post</button></td>
                 </tr>
             </tbody>
         </table>
 
         <div class="row justify-content-center">
 
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <input id="nameFilter" type="text" class="form-control" placeholder="Name">
             </div>
             <!-- /.col-md-5 -->
 
 
-            <div class="col-md-3">
+            <div class="col-md-2">
 
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="categoriesDropdown"
@@ -106,16 +106,16 @@
                     </button>
                     <div class="dropdown-menu w-100">
                         <div class="form-check dropdown-item">
-                            <input class="form-check-input" type="checkbox" id="cat1" value="cat1" checked>
-                            <label class="form-check-label" for="cat1">cat1</label>
+                            <input class="form-check-input" type="checkbox" id="comment" value="comment" checked>
+                            <label class="form-check-label" for="comment">Comment</label>
                         </div>
                         <div class="form-check dropdown-item">
-                            <input class="form-check-input" type="checkbox" id="cat2" value="cat2" checked>
-                            <label class="form-check-label" for="cat2">cat2</label>
+                            <input class="form-check-input" type="checkbox" id="event" value="event" checked>
+                            <label class="form-check-label" for="event">Event</label>
                         </div>
                         <div class="form-check dropdown-item">
-                            <input class="form-check-input" type="checkbox" id="cat3" value="cat3" checked>
-                            <label class="form-check-label" for="cat3">cat3</label>
+                            <input class="form-check-input" type="checkbox" id="report" value="report" checked>
+                            <label class="form-check-label" for="report">Report</label>
                         </div>
                     </div>
                 </div>
@@ -126,13 +126,13 @@
             <!-- /.col-md-3 -->
 
 
-            <div class="col-md-2">
-                <input id="dateFilterStart" type="text" class="form-control" placeholder="From">
+            <div class="col-md-3">
+                <input id="dateFilterStart" type="date" class="form-control" placeholder="From">
             </div>
             <!-- /.col-md-2 -->
 
-            <div class="col-md-2">
-                <input id="dateFilterEnd" type="text" class="form-control" placeholder="To">
+            <div class="col-md-3">
+                <input id="dateFilterEnd" type="date" class="form-control" placeholder="To">
             </div>
             <!-- /.col-md-2 -->
 
