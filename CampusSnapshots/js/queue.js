@@ -11,7 +11,7 @@ function createReport(id, title, image, location, type, status, time, descriptio
         var hours = date.getHours()
         var ampm = "AM"
         if (hours > 12) {
-            horus %= 12
+            hours %= 12
             ampm = "PM"
         }
         var dateString = date.toDateString() + " " + hours + ":" + date.getMinutes() + " " + ampm
@@ -20,7 +20,7 @@ function createReport(id, title, image, location, type, status, time, descriptio
         "<input type='hidden' class='postID' value='" + id + "'>" +
         "<img src='" + image + "' class='card-img-top'>" +
         "<div class='card-body'>" +
-            "<div class='row justify-content-between'>" +
+            "<div class='row justify-content-between p-3'>" +
                 "<div class='col-md-6'>" +
                     "<div class='row'>" +
                         "<h5 class='card-title'>" + title + "</h5>" +
@@ -92,7 +92,7 @@ function createEvent(id, title, image, location, status, starttime, endtime, des
         "<input type='hidden' class='postID' value='" + id + "'>" +
         "<img src='" + image + "' class='card-img-top'>" +
         "<div class='card-body'>" +
-            "<div class='row justify-content-between'>" +
+            "<div class='row justify-content-between p-3'>" +
                 "<div class='col-md-6'>" +
                     "<div class='row'>" +
                         "<h5 class='card-title'>" + title + "</h5>" +
