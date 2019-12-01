@@ -5,6 +5,17 @@
 
 // Create report
 function createReport(id, title, image, location, type, status, time, description, user) {
+        var timesplit = new String(time).split(" ")
+        var timestring = timesplit[0].concat('T', timesplit[1])
+        var date = new Date(timestring)
+        var hours = date.getHours()
+        var ampm = "AM"
+        if (hours > 12) {
+            horus %= 12
+            ampm = "PM"
+        }
+        var dateString = date.toDateString() + " " + hours + ":" + date.getMinutes() + " " + ampm
+
         var report = "<div class='card pb-2 mb-3'>" +
         "<input type='hidden' class='postID' value='" + id + "'>" +
         "<img src='" + image + "' class='card-img-top'>" +
@@ -20,7 +31,7 @@ function createReport(id, title, image, location, type, status, time, descriptio
                 "</div>" + 
                 "<div class='col-auto'>" +
                     "<div class='row py-1'>" + location + "</div>" +
-                    "<div class='row py-1'>" + time + "</div>" +
+                    "<div class='row py-1'>" + dateString + "</div>" +
                     "<div class='row py-1'>" + type + "</div>" +
                     "<div class='row py-1'>" + status + "</div>" +
                 "</div>" +
@@ -41,6 +52,7 @@ function createReport(id, title, image, location, type, status, time, descriptio
             "<form class='border-bottom py-2' id='commentForm'>" +
                 "<div class='form-group'>" +
                     "<input type='hidden' name='postID' value='"+ id + "'>" +
+                    "<input type='hidden' name='type' value='report'>" +
                     "<label for='commentText'>Enter Comment:</label>" +
                     "<textarea class='form-control' id='commentText' name='commentText' rows='2'></textarea>" +
                 "</div>" +
@@ -54,6 +66,28 @@ function createReport(id, title, image, location, type, status, time, descriptio
 
 // Create event
 function createEvent(id, title, image, location, status, starttime, endtime, description, user) {
+    var startTimeSplit = new String(starttime).split(" ")
+    var startTimeString = startTimeSplit[0].concat('T', startTimeSplit[1])
+    var startDate = new Date(startTimeString)
+    var startHours = startDate.getHours()
+    var startAMPM = "AM"
+    if (startHours > 12) {
+        startHours %= 12
+        startAMPM = "PM"
+    }
+    var startDateString = startDate.toDateString() + " " + startHours + ":" + startDate.getMinutes() + " " + startAMPM
+
+    var endTimeSplit = new String(endtime).split(" ")
+    var endTimeString = endTimeSplit[0].concat('T', endTimeSplit[1])
+    var endDate = new Date(endTimeString)
+    var endHours = endDate.getHours()
+    var endAMPM = "AM"
+    if (endHours > 12) {
+        endHours %= 12
+        endAMPM = "PM"
+    }
+    var endDateString = endDate.toDateString() + " " + endHours + ":" + endDate.getMinutes() + " " + endAMPM
+
     var event = "<div class='card pb-2 mb-3'>" +
         "<input type='hidden' class='postID' value='" + id + "'>" +
         "<img src='" + image + "' class='card-img-top'>" +
@@ -69,8 +103,8 @@ function createEvent(id, title, image, location, status, starttime, endtime, des
                 "</div>" + 
                 "<div class='col-auto'>" +
                     "<div class='row py-1'>" + location + "</dviv>" +
-                    "<div class='row py-1'>Start: " + starttime + "</div>" +
-                    "<div class='row py-1'>End: " + endtime + "</div>" +
+                    "<div class='row py-1'>Start: " + startDateString + "</div>" +
+                    "<div class='row py-1'>End: " + endDateString + "</div>" +
                     "<div class='row py-1'>" + status + "</div>" +
                 "</div>" +
             "</div>" +
@@ -90,6 +124,7 @@ function createEvent(id, title, image, location, status, starttime, endtime, des
             "<form class='border-bottom py-2' id='commentForm'>" +
                 "<div class='form-group'>" +
                     "<input type='hidden' name='postID' value='"+ id + "'>" +
+                    "<input type='hidden' name='type' value='event'>" +
                     "<label for='commentText'>Enter Comment:</label>" +
                     "<textarea class='form-control' id='commentText' name='commentText' rows='2'></textarea>" +
                 "</div>" +
