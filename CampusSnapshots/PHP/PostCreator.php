@@ -22,14 +22,14 @@
 			$startdate = $_POST['startDate'];
 			$enddate = $_POST['endDate'];
 
-			$addevent = $conn->prepare("INSERT INTO Events VALUES( DEFAULT, ?, ?, DEFAULT, ?, ?, ?, ?)");
+			$addevent = $conn->prepare("INSERT INTO Events VALUES( DEFAULT, ?, ?, ?, ?, ?, ?, ?)");
 			$addevent->bindParam(1, $_SESSION['UID']);
 			$addevent->bindParam(2, $title);
 			$addevent->bindParam(3,fileUpload('../Files/Events/' . $_SESSION['UID'] . '/')); //given null on no picture
-			$addevent->bindParam(3, $startdate);
-			$addevent->bindParam(4, $enddate);
-			$addevent->bindParam(5, $location);
-			$addevent->bindParam(6, $description);
+			$addevent->bindParam(4, $startdate);
+			$addevent->bindParam(5, $enddate);
+			$addevent->bindParam(6, $location);
+			$addevent->bindParam(7, $description);
 			$addevent->execute();
 		}
 		elseif ($posttype == "report") {
@@ -37,14 +37,14 @@
 
 			$type = $_POST['reportType']; //if we choose to add in selecting a type, edit this line with the corrent name of the field!
 
-			$addreport = $conn->prepare("INSERT INTO Reports VALUES(DEFAULT, ?, ?, DEFAULT, DEFAULT, ?, ?, ?, ?)");
+			$addreport = $conn->prepare("INSERT INTO Reports VALUES(DEFAULT, ?, ?, ?, DEFAULT, ?, ?, ?, ?)");
 			$addreport->bindParam(1, $_SESSION['UID']);
 			$addreport->bindParam(2, $title);
 			$addevent->bindParam(3,fileUpload('../Files/Reports/' . $_SESSION['UID'] . '/')); //given null on no picture
-			$addreport->bindParam(3, $type);
-			$addreport->bindValue(4, 1);
-			$addreport->bindParam(5, $location);
-			$addreport->bindParam(6, $description);
+			$addreport->bindParam(4, $type);
+			$addreport->bindValue(5, 1);
+			$addreport->bindParam(6, $location);
+			$addreport->bindParam(7, $description);
 			$addreport->execute();
 		}
    }
