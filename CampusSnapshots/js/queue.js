@@ -50,13 +50,11 @@ function createReport(id, title, image, location, type, status, time, descriptio
                     "<h6>" + user + "</h6>" +
                 "</div>" +
                 "<div class='col-auto py-1'>" +
-                    // Disable commenting and reporting functionality for now
-                    //"<button type='button' class='btn btn-link btn-sm toggleComments'>Toggle comments</button>" +
-                    //"<button type='button' class='btn btn-link btn-sm reportPost'>Report Post</button>" +
+                    "<button type='button' class='btn btn-link btn-sm toggleComments'>Toggle comments</button>" +
+                    "<button type='button' class='btn btn-link btn-sm reportPost'>Report Post</button>" +
                 "</div>" +
             "</div>" +
     "</div>" +
-    /* Disable commenting and reporting functionality for now
         "<div class='card-footer comments' style='display:none;'>" +
             "<form class='border-bottom py-2' id='commentForm'>" +
                 "<div class='form-group'>" +
@@ -68,7 +66,6 @@ function createReport(id, title, image, location, type, status, time, descriptio
                 "<button type='submit' class='btn btn-primary'>Submit</button>" +
             "</form>" +
         "</div>" +
-        */
     "</div>"
     return $(report)
 }
@@ -135,13 +132,11 @@ function createEvent(id, title, image, location, status, starttime, endtime, des
                     "<h6>" + user + "</h6>" +
                 "</div>" +
                 "<div class='col-auto py-1'>" +
-                    // Disable commenting and reporting functionality for now
-                    //"<button type='button' class='btn btn-link btn-sm toggleComments'>Toggle comments</button>" +
-                    //"<button type='button' class='btn btn-link btn-sm reportPost'>Report Post</button>" +
+                    "<button type='button' class='btn btn-link btn-sm toggleComments'>Toggle comments</button>" +
+                    "<button type='button' class='btn btn-link btn-sm reportPost'>Report Post</button>" +
                 "</div>" +
             "</div>" +
     "</div>" +
-    /* Disable commenting and reporting functionality for now
         "<div class='card-footer comments' style='display:none;'>" +
             "<form class='border-bottom py-2' id='commentForm'>" +
                 "<div class='form-group'>" +
@@ -153,7 +148,6 @@ function createEvent(id, title, image, location, status, starttime, endtime, des
                 "<button type='submit' class='btn btn-primary'>Submit</button>" +
             "</form>" +
         "</div>" +
-        */
     "</div>"
     return $(event)
 }

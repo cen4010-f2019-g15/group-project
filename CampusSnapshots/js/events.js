@@ -1,19 +1,20 @@
 $(function () {
     $.post('PHP/Event.php', function (response) {
+        console.log(response)
         var json = JSON.parse(response)
         for (var item in json) {
-            var event = createEvent(json[item].EID, json[item].Name, "img/header-image.jpg", json[item].Location, "Upcoming", json[item].StartDate, json[item].EndDate, json[item].Description, json[item].UserName)
+            var event = createEvent(json[item].EID, json[item].Name, json[item].Image, json[item].Location, "Upcoming", json[item].StartDate, json[item].EndDate, json[item].Description, json[item].UserName)
             $('#queue').append(event)
         }
     })
 
     // Toggle comments on button click
-    $('.toggleComments').on('click', function () {
+    $(document).on('click', '.toggleComments', function () {
         $(this).parents('.card').children('.comments').slideToggle(200)
     })
 
     // Report comment button event handler
-    $('.reportComment').on('click', function () {
+    $(document).on('click', '.reportComment', function () {
         var value = $(this).siblings('.commentID').val()
         var modal = createReportCommentModal(value)
         modal.on('hidden.bs.modal', function () {
@@ -23,7 +24,7 @@ $(function () {
     })
 
     // Report post button event handler
-    $('.reportPost').on('click', function () {
+    $(document).on('click', '.reportPost', function () {
         var value = $(this).parents('.card').children('.postID').val()
         var modal = createReportPostModal(value)
         modal.on('hidden.bs.modal', function () {
@@ -33,10 +34,23 @@ $(function () {
     })
 
     // Comment form submission event handler
-    $('#commentForm').on('submit', function (e) {
+    $(document).on('submit', '#commentForm', function (e) {
         e.preventDefault()
-        // TODO: actual submission functionality
         console.log($(this).serialize())
+        var formData = new FormData(this)
+        $.ajax({
+            type: 'POST',
+            url: 'PHP/CommentCreator.php',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                console.log(response)
+                if (response === "User Not Logged In") {
+                    // modal bla bla
+                }
+            }
+        })
         $(this)[0].reset()
     })
 
