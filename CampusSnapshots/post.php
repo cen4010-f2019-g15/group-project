@@ -40,7 +40,7 @@ $username = $_SESSION['user'];
                     <?php
                     if (isset($_SESSION['user'])) {
                         echo <<<_END
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="post.php">Post</a>
                         </li>
 _END;
@@ -137,7 +137,7 @@ _END;
                                 <input type="date" class="form-control" name="startDate" id="startDate">
                             </div>
                             <div class="col-6">
-                                <label for="startTime">End Time</label>
+                                <label for="startTime">Start Time</label>
                                 <input type="time" class="form-control" name="startTime" id="startTime">
                             </div>
                         </div>

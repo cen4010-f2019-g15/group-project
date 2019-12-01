@@ -5,18 +5,27 @@
 
 // Create report
 function createReport(id, title, image, location, type, status, time, description, user) {
-        var timesplit = new String(time).split(" ")
-        var timestring = timesplit[0].concat('T', timesplit[1])
-        var date = new Date(timestring)
-        var hours = date.getHours()
-        var ampm = "AM"
-        if (hours > 12) {
-            hours %= 12
-            ampm = "PM"
-        }
-        var dateString = date.toDateString() + " " + hours + ":" + date.getMinutes() + " " + ampm
+    var statusString = ""
+    if (status == 1) statusString = "Unresolved"
+    else if (status == 2) statusString = "In-Progress"
+    else if (status == 3) statusString = "Resolved"
+    
+    var timeSplit = new String(time).split(" ")
+    var timeString = timeSplit[0].concat('T', timeSplit[1])
+    var date = new Date(timeString)
+    var hours = date.getHours()
+    var ampm = "AM"
+    if (hours > 12) {
+        hours %= 12
+        ampm = "PM"
+    }
+    var minutes = date.getMinutes()
+    if (minutes < 10) {
+        minutes = "0".concat(minutes)
+    }
+    var dateString = date.toDateString() + " " + hours + ":" + minutes + " " + ampm
 
-        var report = "<div class='card pb-2 mb-3'>" +
+    var report = "<div class='card pb-2 mb-3'>" +
         "<input type='hidden' class='postID' value='" + id + "'>" +
         "<img src='" + image + "' class='card-img-top'>" +
         "<div class='card-body'>" +
@@ -33,7 +42,7 @@ function createReport(id, title, image, location, type, status, time, descriptio
                     "<div class='row py-1'>" + location + "</div>" +
                     "<div class='row py-1'>" + dateString + "</div>" +
                     "<div class='row py-1'>" + type + "</div>" +
-                    "<div class='row py-1'>" + status + "</div>" +
+                    "<div class='row py-1'>" + statusString + "</div>" +
                 "</div>" +
             "</div>" +
             "<div class='row justify-content-between'>" +
@@ -75,7 +84,11 @@ function createEvent(id, title, image, location, status, starttime, endtime, des
         startHours %= 12
         startAMPM = "PM"
     }
-    var startDateString = startDate.toDateString() + " " + startHours + ":" + startDate.getMinutes() + " " + startAMPM
+    var startMinutes = startDate.getMinutes()
+    if (startMinutes < 10) {
+        startMinutes = "0".concat(startMinutes)
+    }
+    var startDateString = startDate.toDateString() + " " + startHours + ":" + startMinutes + " " + startAMPM
 
     var endTimeSplit = new String(endtime).split(" ")
     var endTimeString = endTimeSplit[0].concat('T', endTimeSplit[1])
@@ -86,7 +99,16 @@ function createEvent(id, title, image, location, status, starttime, endtime, des
         endHours %= 12
         endAMPM = "PM"
     }
-    var endDateString = endDate.toDateString() + " " + endHours + ":" + endDate.getMinutes() + " " + endAMPM
+    var endMinutes = endDate.getMinutes()
+    if (endMinutes < 10) {
+        endMinutes = "0".concat(endMinutes)
+    }
+    var endDateString = endDate.toDateString() + " " + endHours + ":" + endMinutes + " " + endAMPM
+
+    var statusString = ""
+    if (startDate.getTime() > Date.now()) statusString = "Upcoming"
+    else if (Date.now() > startDate.getTime() && Date.now() < endDate.getTime()) statusString = "In-Progress"
+    else statusString = "Finished"
 
     var event = "<div class='card pb-2 mb-3'>" +
         "<input type='hidden' class='postID' value='" + id + "'>" +
@@ -102,10 +124,10 @@ function createEvent(id, title, image, location, status, starttime, endtime, des
                     "</div>" +
                 "</div>" + 
                 "<div class='col-auto'>" +
-                    "<div class='row py-1'>" + location + "</dviv>" +
+                    "<div class='row py-1'>" + location + "</div>" +
                     "<div class='row py-1'>Start: " + startDateString + "</div>" +
                     "<div class='row py-1'>End: " + endDateString + "</div>" +
-                    "<div class='row py-1'>" + status + "</div>" +
+                    "<div class='row py-1'>" + statusString + "</div>" +
                 "</div>" +
             "</div>" +
             "<div class='row justify-content-between'>" +
