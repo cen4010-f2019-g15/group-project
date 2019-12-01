@@ -26,7 +26,7 @@ class Searches
     }
     function getPosts($IDType, $ID){
         
-        $login = self::$conn->prepare("SELECT Person.UserName, Made, 
+        $login = self::$conn->prepare("SELECT Person.UserName, PID, Made, 
         PostText, RID, EID 
         FROM Posts INNER JOIN Person ON Person.UID = Posts.UID WHERE ? = ?");
         $login->bindParam(1, $IDType);

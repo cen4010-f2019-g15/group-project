@@ -43,6 +43,6 @@ function fileUpload($Path){
             die("Sorry, there was an error uploading your file.");
         }
     }
-    return $Path . str_replace($imageFileType, '', $target_file)
+    return $Path . str_replace($imageFileType, '', $target_file);
 }
 ?>

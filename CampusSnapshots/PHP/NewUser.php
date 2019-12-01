@@ -25,7 +25,7 @@ else{
     $New_User->bindParam(1, $_POST['username']);
     $New_User->excecute();
 
-    $result = New_User->fetchColumn();
+    $result = $New_User->fetchColumn();
     mkdir('../Files/Reports/'. $result);
     mkdir('../Files/Events/'. $result);
 }

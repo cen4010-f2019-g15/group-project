@@ -10,9 +10,7 @@ $data = trim($r);
 $data = stripslashes($data);
 $data = htmlspecialchars($data);
 
-//$r = password_hash($r, PASSWORD_DEFAULT);
-
-$login = $conn->prepare("SELECT UID, Password FROM Person 
+$login = $conn->prepare("SELECT UID, Password, admin FROM Person 
 WHERE UserName = ? LIMIT 1");
 $login->bindParam(1, $f);
 
@@ -20,10 +18,11 @@ $login->execute();
 $login->setFetchMode(PDO::FETCH_ASSOC);
 $result = $login->fetch();
 
-if(password_verify($r, $result["Password"])){
+if(password_verify($r, $result[0]["Password"])){
     session_start();
     $_SESSION["user"] = $f;
     $_SESSION["UID"] = $result["UID"];
+    $_SESSION["admin"] = $result["admin"] == 'admin';
     
     $login = $conn->prepare("UPDATE Person SET Active = DEFAULT WHERE UID = ?");
     $login->bindParam(1, $_SESSION['UID']);
@@ -32,6 +31,6 @@ if(password_verify($r, $result["Password"])){
     echo 'true';
 }
 else{
-    echo 'Form pass: ' . $r . 'DB pass: ' . $result["Password"];
+    echo 'false';
 }
 ?>
