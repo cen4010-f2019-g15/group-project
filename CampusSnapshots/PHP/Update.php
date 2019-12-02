@@ -7,27 +7,28 @@ if (!ISSET($_SESSION["UID"])){
     die("You are not logged in");
 }
 
-$SQL_str = 'UPDATE';
+$SQL_str = 'UPDATE ';
 $values = array();
 $IDType = null;
 //Using isset get id from Report or Event Post or Comment
 //Then set IDType with Each
 if($_POST['type'] == 'report'){
-    $SQL_str .= 'Reports SET';
-    $IDType = 'PID';
+    $SQL_str .= 'Reports SET ';
+    $IDType = 'RID ';
     if(ISSET($_FILES['fileToUpload'])){
-        $SQL_str .= 'Images = ?';
-        $values->push_array(fileUpload('../Files/Reports/' . $_SESSION['UID'] . '/'));
+        $SQL_str .= 'Images = ? ';
+        array_push($values, fileUpload('../Files/Reports/' . $_SESSION['UID'] . '/'));
     }
-        
+    /*    
     if(ISSET($_POST['type'])){
-        $SQL_str .= 'Type = ?';
-        $values->push_array($_POST['type']);
+        $SQL_str .= 'Type = ? ';
+        array_push($values, $_POST['type']);
     }
+    */
         
     if(ISSET($_POST['Status'])){
-        $SQL_str .= 'Status = ?';
-        $values->push_array($_POST['Status']);
+        $SQL_str .= 'Status = ? ';
+        array_push($values, $_POST['Status']);
     }
 
 }
@@ -39,40 +40,40 @@ else if($_POST['type'] == 'event'){
     $IDType = 'EID';
     if(ISSET($_FILES['fileToUpload'])){
         $SQL_str .= 'Images = ?';
-        $values->push_array(fileUpload('../Files/Events/' . $_SESSION['UID'] . '/'));
+        array_push($values, fileUpload('../Files/Events/' . $_SESSION['UID'] . '/'));
     }
 
     if(ISSET($_POST['startDate'])){
         $SQL_str .= 'startDate = ?';
-        $values->push_array($_POST['startDate']);
+        array_push($values, $_POST['startDate']);
     }
         
     if(ISSET($_POST['endDate'])){
         $SQL_str .= 'endDate = ?';
-        $values->push_array($_POST['endDate']);
+        array_push($values, $_POST['endDate']);
     }
 }
 else
     die("error");
 
 if(ISSET($_POST['Name'])){
-    $SQL_str .= 'Name = ?';
-    $values->push_array($_POST['Name']);
+    $SQL_str .= 'Name = ? ';
+    array_push($values, $_POST['Name']);
 }
 
 if(ISSET($_POST['Description'])){
-    $SQL_str .= 'Description = ?';
-    $values->push_array($_POST['Description']);
+    $SQL_str .= 'Description = ? ';
+    array_push($values, $_POST['Description']);
 }
 
-$SQL_str .= 'WHERE' . IDType . ' = ' . $_POST['PostID'];
+$SQL_str .= 'WHERE ' . $IDType . '= ' . $_POST['PostID'];
 
 $conn = connect();
 $Update = $conn->prepare($SQL_str);
 
 //Build PDO request from set Feilds
 for($i = 1; $i <= sizeof($values); $i++)
-    $Update->bindParam(i-1, $values[$i-1]);
+    $Update->bindParam($i, $values[$i-1]);
 
 $Update->execute();
 
