@@ -1,11 +1,12 @@
 $(function () {
     $.post('PHP/Report.php', function (response) {
-        console.log(response)
         var json = JSON.parse(response)
-        console.log(json)
         for (var item in json) {
             var report = createReport(json[item].RID, json[item].Name, json[item].Image, json[item].Location, json[item].Type, json[item].Status, json[item].Reported, json[item].Description, json[item].UserName)
             $('#queue').append(report)
+            var commentData = new FormData()
+            commentData.append('idType', 'RID')
+            commentData.append('id', json[item].RID)
         }
     })
 

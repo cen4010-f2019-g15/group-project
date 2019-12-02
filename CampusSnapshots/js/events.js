@@ -1,6 +1,5 @@
 $(function () {
     $.post('PHP/Event.php', function (response) {
-        console.log(response)
         var json = JSON.parse(response)
         for (var item in json) {
             var event = createEvent(json[item].EID, json[item].Name, json[item].Image, json[item].Location, "Upcoming", json[item].StartDate, json[item].EndDate, json[item].Description, json[item].UserName)
@@ -36,7 +35,6 @@ $(function () {
     // Comment form submission event handler
     $(document).on('submit', '#commentForm', function (e) {
         e.preventDefault()
-        console.log($(this).serialize())
         var formData = new FormData(this)
         $.ajax({
             type: 'POST',
@@ -45,7 +43,6 @@ $(function () {
             contentType: false,
             processData: false,
             success: function(response) {
-                console.log(response)
                 if (response === "User Not Logged In") {
                     $('#commentLoginModal').modal()
                 } else {

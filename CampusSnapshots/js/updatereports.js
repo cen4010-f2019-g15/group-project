@@ -1,8 +1,6 @@
 $(function() {
     $.post('PHP/Report.php', function (response) {
-        console.log(response)
         var json = JSON.parse(response)
-        console.log(json)
         for (var item in json) {
             var report = createTableEntry(json[item].RID, json[item].Name, json[item].UserName, json[item].Location, json[item].Type, json[item].Reported, json[item].Status)
             $('.reports').append(report)

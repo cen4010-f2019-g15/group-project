@@ -10,7 +10,7 @@ function createReport(id, title, image, location, type, status, time, descriptio
 
     var dateString = formatTimestamp(time)
 
-    var report = "<div class='card pb-2 mb-3'>" +
+    var report = $("<div class='card pb-2 mb-3'>" +
         "<input type='hidden' class='postID' value='" + id + "'>" +
         "<img src='" + image + "' class='card-img-top'>" +
         "<div class='card-body'>" +
@@ -51,8 +51,24 @@ function createReport(id, title, image, location, type, status, time, descriptio
                 "<button type='submit' class='btn btn-primary'>Submit</button>" +
             "</form>" +
         "</div>" +
-    "</div>"
-    return $(report)
+    "</div>")
+    var commentData = new FormData()
+    commentData.append('id', id)
+    $.ajax({
+        type: 'POST',
+        url: 'PHP/ReportComments.php',
+        data: commentData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            var commentJson = JSON.parse(response)
+            for (var data in commentJson) {
+                var comment = createComment(commentJson[data].PoID, commentJson[data].UserName, commentJson[data].PostText)
+                report.find('.comments').append(comment)
+            }
+        }
+    })
+    return report
 }
 
 // Create event
@@ -74,7 +90,7 @@ function createEvent(id, title, image, location, status, starttime, endtime, des
     else if (Date.now() > startDate.getTime() && Date.now() < endDate.getTime()) statusString = "In-Progress"
     else statusString = "Finished"
 
-    var event = "<div class='card pb-2 mb-3'>" +
+    var event = $("<div class='card pb-2 mb-3'>" +
         "<input type='hidden' class='postID' value='" + id + "'>" +
         "<img src='" + image + "' class='card-img-top'>" +
         "<div class='card-body'>" +
@@ -115,7 +131,23 @@ function createEvent(id, title, image, location, status, starttime, endtime, des
                 "<button type='submit' class='btn btn-primary'>Submit</button>" +
             "</form>" +
         "</div>" +
-    "</div>"
+    "</div>")
+    var commentData = new FormData()
+    commentData.append('id', id)
+    $.ajax({
+        type: 'POST',
+        url: 'PHP/EventComments.php',
+        data: commentData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            var commentJson = JSON.parse(response)
+            for (var data in commentJson) {
+                var comment = createComment(commentJson[data].PoID, commentJson[data].UserName, commentJson[data].PostText)
+                event.find('.comments').append(comment)
+            }
+        }
+    })
     return $(event)
 }
 
