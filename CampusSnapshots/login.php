@@ -72,8 +72,8 @@ if (isset($_SESSION['user'])) {
     <script src="js/lib/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- Page functionality JS -->
+    <script src="js/cookie.js"></script>
     <script src="js/login.js"></script>
-
 </body>
 
 </html>
