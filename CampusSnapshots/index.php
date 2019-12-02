@@ -17,8 +17,8 @@
     <header class="heading">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
-                <div class="col-12 text-center">
-                    <h2 class="display-2">Campus Snapshots</h2>
+                <div class="col-md-12 text-center">
+                    <h2 class="display-3">Campus Snapshots</h2>
                     <p class="lead">Keeping your campus running smoothly</p>
                 </div>
                 <!-- /.col-12 -->
