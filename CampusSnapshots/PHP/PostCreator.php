@@ -16,8 +16,8 @@
 	   	$conn = connect();
 		if ($posttype == 'event') {
 
-			$startdate = $_POST['startDate'];
-			$enddate = $_POST['endDate'];
+			$startdate = $_POST['startDate'] . " " . $_POST['startTime'];
+			$enddate = $_POST['endDate'] . " " . $_POST['endTime'];
 
 			$addevent = $conn->prepare("INSERT INTO Events VALUES( DEFAULT, ?, ?, ?, ?, ?, ?, ?)");
 			$addevent->bindParam(1, $_SESSION['UID']);
@@ -37,7 +37,7 @@
 			$addreport = $conn->prepare("INSERT INTO Reports VALUES(DEFAULT, ?, ?, ?, DEFAULT, ?, ?, ?, ?)");
 			$addreport->bindParam(1, $_SESSION['UID']);
 			$addreport->bindParam(2, $title);
-			$addevent->bindValue(3,fileUpload('Files/Reports/' . $_SESSION['UID'] . $_SESSION['user'] . '/')); //given null on no picture
+			$addreport->bindValue(3,fileUpload('Files/Reports/' . $_SESSION['UID'] . $_SESSION['user'] . '/')); //given null on no picture
 			$addreport->bindParam(4, $type);
 			$addreport->bindValue(5, 1);
 			$addreport->bindParam(6, $location);
