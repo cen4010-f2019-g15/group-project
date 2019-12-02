@@ -32,10 +32,10 @@ if(password_verify($r, $result["Password"])){
     $login->bindParam(1, $_SESSION['UID']);
     $login->execute();
     
-    echo 'true';
+    echo json_encode(['result' => true]);
 }
 else{
-    echo 'false';
+    echo json_encode(['result' => false]);
 }
 ?>
 

@@ -13,7 +13,8 @@ $(function() {
             contentType: false,
             processData: false,
             success: function(response) {
-                if (response === 'true') {
+                var json = JSON.parse(response)
+                if (json['result'] === true) {
                     window.location.href = 'reports.php'
                 } else {
                     errorText.text("Invalid Login Information")
