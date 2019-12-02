@@ -2,12 +2,13 @@
 
 //credit to W3schools for file upload script
 function fileUpload($Path){
-    $target_file = basename($_FILES["fileToUpload"]["name"]);
+    $target_file = basename($_FILES["image"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
     // Check if image file is a actual image or fake image
     if(isset($_FILES["fileToUpload"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        $check = getimagesize($_FILES["image"]["tmp_name"]);
         if($check !== false) {
             $uploadOk = 1;
         } else {
@@ -21,7 +22,7 @@ function fileUpload($Path){
         $uploadOk = 0;
     }
     // Check file size
-    if ($_FILES["fileToUpload"]["size"] > (4096*2160) * 8.25) {
+    if ($_FILES["image"]["size"] > (4096*2160) * 8.25) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
@@ -37,12 +38,12 @@ function fileUpload($Path){
         die("Sorry, your file was not uploaded.");
         // if everything is ok, try to upload file
     } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $Path . str_replace($imageFileType, '', $target_file)) ) {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], '../' . $Path . $target_file) ) {
             $_SERVER['CurrentFile'] = $target_file;
         } else {
             die("Sorry, there was an error uploading your file.");
         }
     }
-    return $Path . str_replace($imageFileType, '', $target_file);
+    return $Path . $target_file;
 }
 ?>
