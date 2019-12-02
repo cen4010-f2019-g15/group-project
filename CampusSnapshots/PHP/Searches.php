@@ -24,19 +24,20 @@ class Searches
         
         return $result;
     }
-    function getPosts($IDType, $ID){
-        
+    function getPosts($IDType = "PoID", $ID = "PoID"){
+
         $login = self::$conn->prepare("SELECT Person.UserName, PoID, Made, 
         PostText, RID, EID 
         FROM Posts INNER JOIN Person ON Person.UID = Posts.UID WHERE ? = ?");
         $login->bindParam(1, $IDType);
         $login->bindParam(2, $ID);
         
-        
         $login->execute();
-        $login->setFetchMode(PDO::FETCH_ASSOC);
-        $result = $login->fetchAll();
         
+        $login->setFetchMode(PDO::FETCH_ASSOC);
+        
+        $result = $login->fetchAll();
+        var_dump($result);
         return $result;
     }
     function getEvents($IDType = "EID", $ID = "EID"){
