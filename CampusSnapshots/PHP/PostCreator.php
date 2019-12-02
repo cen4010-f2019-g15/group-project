@@ -16,8 +16,8 @@
 	   	$conn = connect();
 		if ($posttype == 'event') {
 
-			$startdate = $_POST['startDate'];
-			$enddate = $_POST['endDate'];
+			$startdate = $_POST['startDate'] . " " . $_POST['startTime'];
+			$enddate = $_POST['endDate'] . " " . $_POST['endTime'];
 
 			$addevent = $conn->prepare("INSERT INTO Events VALUES( DEFAULT, ?, ?, ?, ?, ?, ?, ?)");
 			$addevent->bindParam(1, $_SESSION['UID']);
