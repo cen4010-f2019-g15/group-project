@@ -48,9 +48,6 @@ _END;
                     if (isset($_SESSION['admin'])) {
                         echo <<<_END
                         <li class="nav-item">
-                            <a class="nav-link" href="admin.php">Admin</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="updatereports.php">Update Reports</a>
                         </li>
 _END;
@@ -66,7 +63,7 @@ _END;
                             <a class="nav-link" href="logout.php">Logout</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link">$username</a>
+                            <a class="nav-link username">$username</a>
                         </li>
 _END;
                     } else {
@@ -90,9 +87,10 @@ _END;
     <div class="container">
 
         <div class="row justify-content-center py-3">
-            <div class="col-md-12" id="posts">
+            <div class="col-md-6" id="posts">
 
                 <!-- Filters -->
+                <!--
                 <div class="dropright pb-2">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="filtersDropdown"
                         data-toggle="dropdown">
@@ -113,6 +111,7 @@ _END;
                         </div>
                     </div>
                 </div>
+                -->
                 <!-- /.dropdown -->
 
                 <div id="queue">
@@ -127,6 +126,26 @@ _END;
 
     </div>
     <!-- /.container -->
+
+    <div class="modal" tabindex="-1" role="dialog" id="commentLoginModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>You must be logged in to comment</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="login.php" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- JS Dependencies -->
     <script src="js/lib/jquery/jquery-3.4.1.min.js"></script>

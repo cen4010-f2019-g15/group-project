@@ -91,7 +91,10 @@ if (isset($_SESSION['user'])) {
                             <div class="form-check mb-3">
                                 <input type="checkbox" class="form-check-input" value="" id="tosCheck">
                                 <label class="form-check-label" for="tosCheck">
-                                    I have read and agree to the User Agreement and Privacy Policy
+                                    I have read and agree to the 
+                                    <a href="#" data-toggle="modal", data-target="#tosModal">
+                                        User Agreement and Privacy Policy
+                                    </a>
                                 </label>
                                 <p><span class="text-danger" id="tosError"></span></p>
                             </div>
@@ -110,6 +113,38 @@ if (isset($_SESSION['user'])) {
 
     </div>
     <!-- /.container -->
+
+    <div class="modal" tabindex="-1" role="dialog" id="tosModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Campus Snapshots Terms of Service</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        You agree to allow Campus Snapshots to store images you upload 
+                        for the purpose of displaying them on Campus Snapshots.
+                    </p>
+                    <p>
+                        You agree to allow Campus Snapshots to store the user information 
+                        supplied in the Signup form and allow Staff to view this information 
+                        for administrative and disciplinary purposes.
+                    </p>
+                    <p>
+                        You will not use Campus Snapshots to post offensive, inflamitory, or explicit 
+                        information or images. Please abide by your institutions code of conduct while 
+                        using Campus Snapshots.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- JS Dependencies -->
     <script src="js/lib/jquery/jquery-3.4.1.min.js"></script>

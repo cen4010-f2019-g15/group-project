@@ -1,29 +1,14 @@
 // Various functions for creating content for the queue pages (reports and events)
 
-//TODO: Should move common event handler functions to this file so they are not duplicated in reports.js and events.js
-//TODO: Need to redesign how Location, Times, and Status are displayed on posts to look better on mobile
-
 // Create report
 function createReport(id, title, image, location, type, status, time, description, user) {
+    // Parse status from int given by DB to appropriate string
     var statusString = ""
     if (status == 1) statusString = "Unresolved"
     else if (status == 2) statusString = "In-Progress"
     else if (status == 3) statusString = "Resolved"
-    
-    var timeSplit = new String(time).split(" ")
-    var timeString = timeSplit[0].concat('T', timeSplit[1])
-    var date = new Date(timeString)
-    var hours = date.getHours()
-    var ampm = "AM"
-    if (hours > 12) {
-        hours %= 12
-        ampm = "PM"
-    }
-    var minutes = date.getMinutes()
-    if (minutes < 10) {
-        minutes = "0".concat(minutes)
-    }
-    var dateString = date.toDateString() + " " + hours + ":" + minutes + " " + ampm
+
+    var dateString = formatTimestamp(time)
 
     var report = "<div class='card pb-2 mb-3'>" +
         "<input type='hidden' class='postID' value='" + id + "'>" +
@@ -51,7 +36,7 @@ function createReport(id, title, image, location, type, status, time, descriptio
                 "</div>" +
                 "<div class='col-auto py-1'>" +
                     "<button type='button' class='btn btn-link btn-sm toggleComments'>Toggle comments</button>" +
-                    "<button type='button' class='btn btn-link btn-sm reportPost'>Report Post</button>" +
+                    //"<button type='button' class='btn btn-link btn-sm reportPost'>Report Post</button>" +
                 "</div>" +
             "</div>" +
     "</div>" +
@@ -72,36 +57,18 @@ function createReport(id, title, image, location, type, status, time, descriptio
 
 // Create event
 function createEvent(id, title, image, location, status, starttime, endtime, description, user) {
+    var startDateString = formatTimestamp(starttime)
+    var endDateString = formatTimestamp(endtime)
+
     var startTimeSplit = new String(starttime).split(" ")
     var startTimeString = startTimeSplit[0].concat('T', startTimeSplit[1])
     var startDate = new Date(startTimeString)
-    var startHours = startDate.getHours()
-    var startAMPM = "AM"
-    if (startHours > 12) {
-        startHours %= 12
-        startAMPM = "PM"
-    }
-    var startMinutes = startDate.getMinutes()
-    if (startMinutes < 10) {
-        startMinutes = "0".concat(startMinutes)
-    }
-    var startDateString = startDate.toDateString() + " " + startHours + ":" + startMinutes + " " + startAMPM
 
     var endTimeSplit = new String(endtime).split(" ")
     var endTimeString = endTimeSplit[0].concat('T', endTimeSplit[1])
     var endDate = new Date(endTimeString)
-    var endHours = endDate.getHours()
-    var endAMPM = "AM"
-    if (endHours > 12) {
-        endHours %= 12
-        endAMPM = "PM"
-    }
-    var endMinutes = endDate.getMinutes()
-    if (endMinutes < 10) {
-        endMinutes = "0".concat(endMinutes)
-    }
-    var endDateString = endDate.toDateString() + " " + endHours + ":" + endMinutes + " " + endAMPM
 
+    // Determine status of event based on start and end times
     var statusString = ""
     if (startDate.getTime() > Date.now()) statusString = "Upcoming"
     else if (Date.now() > startDate.getTime() && Date.now() < endDate.getTime()) statusString = "In-Progress"
@@ -133,7 +100,7 @@ function createEvent(id, title, image, location, status, starttime, endtime, des
                 "</div>" +
                 "<div class='col-auto py-1'>" +
                     "<button type='button' class='btn btn-link btn-sm toggleComments'>Toggle comments</button>" +
-                    "<button type='button' class='btn btn-link btn-sm reportPost'>Report Post</button>" +
+                    //"<button type='button' class='btn btn-link btn-sm reportPost'>Report Post</button>" +
                 "</div>" +
             "</div>" +
     "</div>" +
@@ -204,4 +171,35 @@ function createReportCommentModal(id) {
     "</div>" +
 "</div>"
 return $(modal)
+}
+
+// Create comments
+function createComment(id, username, text) {
+    var comment = '<div class="border-bottom pt-2">' +
+        '<input type="hidden" class="commentID" value="' + id + '">' +
+        '<p><h6>' + username + '</h6></p>' +
+        '<p>' + text + '</p>' +
+        //'<button type="button" class="btn btn-link btn-sm px-0 reportComment">report comment</button>' +
+    '</div>'
+    return $(comment)
+}
+
+// Function for formating timestamp given by DB 
+function formatTimestamp(time) {
+    var timeSplit = new String(time).split(" ")
+    // Get timestring into format expected by Date
+    var timeString = timeSplit[0].concat('T', timeSplit[1])
+    var date = new Date(timeString)
+    var hours = date.getHours()
+    var ampm = "AM"
+    if (hours > 12) {
+        hours %= 12
+        ampm = "PM"
+    }
+    var minutes = date.getMinutes()
+    if (minutes < 10) {
+        minutes = "0".concat(minutes)
+    }
+    var dateString = date.toDateString() + " " + hours + ":" + minutes + " " + ampm
+    return dateString
 }

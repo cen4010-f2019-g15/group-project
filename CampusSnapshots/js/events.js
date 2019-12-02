@@ -47,7 +47,9 @@ $(function () {
             success: function(response) {
                 console.log(response)
                 if (response === "User Not Logged In") {
-                    // modal bla bla
+                    $('#commentLoginModal').modal()
+                } else {
+                    $('.comments').append(createComment(formData.get('postID'), $('.username').text(), formData.get('commentText')))
                 }
             }
         })

@@ -49,9 +49,6 @@ _END;
                     if (isset($_SESSION['admin'])) {
                         echo <<<_END
                         <li class="nav-item">
-                            <a class="nav-link" href="admin.php">Admin</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="updatereports.php">Update Reports</a>
                         </li>
 _END;

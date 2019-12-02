@@ -48,9 +48,6 @@ _END;
 
                     if (isset($_SESSION['admin'])) {
                         echo <<<_END
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin.php">Admin</a>
-                        </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="updatereports.php">Update Reports</a>
                         </li>
@@ -103,7 +100,6 @@ _END;
                     <th scope="col">Type</th>
                     <th scope="col">Date</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Delete Post</th>
                 </tr>
             </thead>
             <tbody class="reports">
@@ -121,6 +117,7 @@ _END;
 
     <!-- Page Functionality JS-->
     <script src="js/updatereports.js"></script>
+    <script src="js/queue.js"></script>
 
 
 </body>

@@ -37,7 +37,6 @@ $(function () {
     // Comment form submission event handler
     $(document).on('submit', '#commentForm', function (e) {
         e.preventDefault()
-        console.log($(this).serialize())
         var formData = new FormData(this)
         $.ajax({
             type: 'POST',
@@ -46,9 +45,10 @@ $(function () {
             contentType: false,
             processData: false,
             success: function(response) {
-                console.log(response)
                 if (response === "User Not Logged In") {
-                    // modal bla bla
+                    $('#commentLoginModal').modal()
+                } else {
+                    $('.comments').append(createComment(formData.get('postID'), $('.username').text(), formData.get('commentText')))
                 }
             }
         })

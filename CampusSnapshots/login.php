@@ -50,6 +50,9 @@ if (isset($_SESSION['user'])) {
 
                             <button type="submit" class="btn btn-primary w-100">Log In</button>
                         </form>
+                        <div class="text-center pt-2">
+                            Don't have an account? <a href="signup.php">create one today!</a>
+                        </div>
                     </div>
                 </div>
                 <!-- /.card -->
