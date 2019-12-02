@@ -7,10 +7,7 @@
    }
    elseif (empty($_POST['title']) == false and empty($_POST['location']) == false and empty($_POST['description']) == false ) {
 	   	session_start();
-		if(!chdir($_SESSION['UID'])) {
-			die("Error changing Directory");
-		}
-		
+	   
 	  	$posttype = $_POST["type"];
 	   	$title = $_POST['title'];
 	   	$location = $_POST['location'];
