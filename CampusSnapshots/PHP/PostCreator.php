@@ -7,7 +7,7 @@
    }
    elseif (empty($_POST['title']) == false and empty($_POST['location']) == false and empty($_POST['description']) == false ) {
 	   	session_start();
-	   
+		
 	  	$posttype = $_POST["type"];
 	   	$title = $_POST['title'];
 	   	$location = $_POST['location'];
@@ -22,7 +22,7 @@
 			$addevent = $conn->prepare("INSERT INTO Events VALUES( DEFAULT, ?, ?, ?, ?, ?, ?, ?)");
 			$addevent->bindParam(1, $_SESSION['UID']);
 			$addevent->bindParam(2, $title);
-			$addevent->bindParam(3,fileUpload('../Files/Events/' . $_SESSION['UID'] . '/')); //given null on no picture
+			$addevent->bindValue(3,fileUpload('Files/Events/' . $_SESSION['UID'] . $_SESSION['user'] .  '/')); //given null on no picture
 			$addevent->bindParam(4, $startdate);
 			$addevent->bindParam(5, $enddate);
 			$addevent->bindParam(6, $location);
@@ -37,7 +37,7 @@
 			$addreport = $conn->prepare("INSERT INTO Reports VALUES(DEFAULT, ?, ?, ?, DEFAULT, ?, ?, ?, ?)");
 			$addreport->bindParam(1, $_SESSION['UID']);
 			$addreport->bindParam(2, $title);
-			$addevent->bindParam(3,fileUpload('../Files/Reports/' . $_SESSION['UID'] . '/')); //given null on no picture
+			$addreport->bindValue(3,fileUpload('Files/Reports/' . $_SESSION['UID'] . $_SESSION['user'] . '/')); //given null on no picture
 			$addreport->bindParam(4, $type);
 			$addreport->bindValue(5, 1);
 			$addreport->bindParam(6, $location);
