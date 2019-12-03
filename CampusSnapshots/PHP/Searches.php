@@ -24,36 +24,27 @@ class Searches
         
         return $result;
     }
-    function getReportComments($ID){
+    function getPosts($IDType = "PoID", $ID = "PoID"){
         $login = self::$conn->prepare("SELECT Person.UserName, PoID, Made, 
         PostText, RID, EID 
-        FROM Posts INNER JOIN Person ON Person.UID = Posts.UID WHERE RID = ?");
-
-        //$login->bindParam(1, $IDType);
-        $login->bindParam(1, $ID);
-        
+        FROM Posts INNER JOIN Person ON Person.UID = Posts.UID WHERE ? = ?");
+        switch($IDType)
+        {   
+            case "EID":
+                $login->bindValue(1, "EID");
+                break;
+            case "RID":
+                $login->bindValue(1, "RID");
+                break;
+        }
+        $login->bindParam(2, $ID);
         
         $login->execute();
         
         $login->setFetchMode(PDO::FETCH_ASSOC);
         
         $result = $login->fetchAll();
-        return $result;
-    }
-    function getEventComments($ID){
-        $login = self::$conn->prepare("SELECT Person.UserName, PoID, Made, 
-        PostText, RID, EID 
-        FROM Posts INNER JOIN Person ON Person.UID = Posts.UID WHERE EID = ?");
-
-        //$login->bindParam(1, $IDType);
-        $login->bindParam(1, $ID);
-        
-        
-        $login->execute();
-        
-        $login->setFetchMode(PDO::FETCH_ASSOC);
-        
-        $result = $login->fetchAll();
+        var_dump($result);
         return $result;
     }
     function getEvents($IDType = "EID", $ID = "EID"){
@@ -61,7 +52,15 @@ class Searches
         Image, StartDate, EndDate, Description 
         FROM Events INNER JOIN Person ON Events.UID = Person.UID WHERE ? = ?");
         
-        $login->bindParam(1, $IDType);
+        switch($IDType)
+        {
+            case "EID":
+                $login->bindValue(1, "EID");
+                break;
+            case "RID":
+                $login->bindValue(1, "RID");
+                break;
+        }
         $login->bindParam(2, $ID);
         
         
@@ -76,7 +75,16 @@ class Searches
         $login = self::$conn->prepare("SELECT Person.UserName, RID, 
         Name, Image, Reported, Reports.Type, Status, Location, Description 
         FROM Reports INNER JOIN Person ON Reports.UID = Person.UID WHERE ? = ? ");
-        $login->bindParam(1, $IDType);
+        
+        switch($IDType)
+        {
+            case "EID":
+                $login->bindValue(1, "EID");
+                break;
+            case "RID":
+                $login->bindValue(1, "RID");
+                break;
+        }
         $login->bindParam(2, $ID);
         
         $login->execute();
